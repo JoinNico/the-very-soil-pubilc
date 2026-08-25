@@ -1,65 +1,66 @@
-# Landing Page Book - Astro + Tailwind + Vercel Edge
+# The Very Soil / 绝望即壤
 
-Inspired by: https://14habits.com/
+《绝望即壤——〈魔法少女小圆〉非官方批评研究》中文版展示网站。项目使用 Astro 6 与原生 CSS 构建，页面为纯静态输出。
 
-## 🎯 Features
+## 本地开发
 
-- ✅ [Tailwind 4](https://tailwindcss.com/);
-- ✅ [Astro 6v](https://astro.build/);
-- ✅ [Astro/Sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/);
-- ✅ [Deploy at Vercel with Serverless](https://docs.astro.build/en/guides/integrations-guide/vercel/);
-- ✅ [Partytown + Google Analytics](https://partytown.builder.io/google-tag-manager)
+需要 Node.js 22 或更高版本。
 
-## 🧞 Commands
+```bash
+npm install
+npm run dev
+npm run check
+npm run build
+npm run preview
+```
 
-All commands are run from the root of the project, from a terminal:
+生产域名通过 `PUBLIC_SITE_URL` 提供。未设置时仍可正常构建，但不会生成 canonical URL 与 sitemap：
 
-| Command                | Action                                             |
-| :--------------------- | :------------------------------------------------- |
-| `npm install`          | Installs dependencies                              |
-| `npm run dev`          | Starts local dev server at `localhost:3000`        |
-| `npm run build`        | Build your production site to `./dist/`            |
-| `npm run preview`      | Preview your build locally, before deploying       |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro preview` |
-| `npm run astro --help` | Get help using the Astro CLI                       |
-| `npx @astrojs/upgrade` | Astro upgrade                                      |
+```bash
+PUBLIC_SITE_URL=https://example.com npm run build
+```
 
-## 🎨 Customization
+## 内容与发售状态
 
-Update variable colours at:
+书籍元数据、活动信息、按钮链接与发售阶段集中在 `src/data/site.ts`。`release.phase` 支持以下状态：
 
-- `@theme` in [global.css](./src/styles/global.css);
+- `pre_event`：ComicQuest 首发预告与意向登记；
+- `event`：展会现场售卖中；
+- `online_remainder`：展后余量线上销售；
+- `sold_out`：售罄。
 
-## 🔍 SEO
+外部问卷和线上销售 URL 尚未提供时，页面会显示不可点击的说明，不会产生空链接。
 
-- Rich Results Test: https://search.google.com/test/rich-results
-- https://developers.facebook.com/tools/debug/
+意向问卷建议收集：昵称、联系方式、购买渠道（10 月 5 日现场 / 10 月 6 日现场 / 展后线上）、预计数量、备注和联系授权。问卷须明确说明：登记不构成预订或留货，线上销售以实际余量为准。
 
-## Examples
+## 更新试读 PDF
 
-Check the [demo](https://landing-page-book-astro-svelte-tailwind.vercel.app/).
+试读本来自相邻的翻译工程，包含屏幕阅读版前 20 个物理页。需要 XeLaTeX、latexmk、Biber 与 MuPDF：
 
-## 👍 Contribute
+```bash
+npm run sync:sample
+```
 
-If you want to say thank you and/or support the active development this project:
+脚本默认读取 `../The-Very-Soil`。也可以显式指定：
 
-1. Add a [GitHub Star](https://github.com/candidosales/landing-page-book-astro-svelte-tailwind/stargazers) to the project.
-2. Tweet about the project [on your Twitter](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fcandidosales%2Flanding-page-book-astro-svelte-tailwind&text=Dependencies%20report%20aims%20to%20help%20analyze%20the%20consistency%20of%20the%20dependencies%20in%20your%20company%27s%20frontend%20projects).
-3. Write a review or tutorial on [Medium](https://medium.com/), [Dev.to](https://dev.to/) or personal blog.
-4. Support the project by donating a [cup of coffee](https://buymeacoff.ee/candidosales).
+```bash
+THE_VERY_SOIL_SOURCE=/absolute/path/to/The-Very-Soil npm run sync:sample
+```
 
-## ☕ Supporters
+网站构建本身不依赖 LaTeX；生成的试读文件保存在 `public/downloads/`。
 
-If you want to support this project, you can ☕ [**buy a coffee here**](https://buymeacoff.ee/candidosales)
+## 正式图片替换
 
-## ✨ Acknowledgment
+目前封面与内页视觉使用主题色和项目母题构成，不包含动画截图或模板图片。正式素材建议：
 
-- [zenorocha/14habits.com](https://github.com/zenorocha/14habits.com)
+- 正封面：B6 比例 `125:176`，无透视，至少 `1600×2253px`，推荐 `2000×2816px`，sRGB；
+- 实体书跨页照片：横向 3:2，至少 `2400×1600px`，避免反光；
+- 可选：合起书本、书脊或纸张细节照片。
 
-## Author
+首屏的 CSS 立体书只需要正封面；除非以后扩展到大角度或 360°旋转，否则无需封底和书脊平面稿。
 
-- Cândido Sales - [@candidosales](https://twitter.com/candidosales)
+## 权利说明
 
-## ⚠️ Copyright and license
+译文与排版 © 2026 JoinNico。保留所有权利；未经许可，不得复制、转载、改编或用于商业用途。
 
-Code and documentation copyright 2020-2030 the [Authors](https://github.com/candidosales/material-time-picker/graphs/contributors) and Code released under the [MIT License](https://github.com/candidosales/material-time-picker/blob/master/LICENSE). Docs released under [Creative Commons](https://creativecommons.org/licenses/by/3.0/).
+本书为非官方翻译评论作品，与原作者、出版方及相关权利方无隶属或授权关系。原著及相关作品的权利归各自权利人所有。网站代码沿用仓库根目录 `LICENSE` 所列的软件许可；Libertinus 与 Noto 字体遵循随附 SIL Open Font License，MadokaRunes 的使用范围见随附项目使用说明。

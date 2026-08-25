@@ -1,0 +1,205 @@
+---
+import Motifs from './Motifs.astro';
+---
+
+<section class='about' id='about' aria-labelledby='about-title'>
+  <Motifs name='seed' class='about-seed' />
+  <div class='about-inner'>
+    <header class='section-heading'>
+      <p>01 / ABOUT</p>
+      <h2 id='about-title'>所谓“土壤”，<br />究竟意味着什么？</h2>
+    </header>
+
+    <div class='about-body'>
+      <blockquote>
+        <p>“或许，绝望恰是孕育人类希望的土壤；<br />未经荒诞，难觅生命真义。”</p>
+        <footer>—— 瓦茨拉夫·哈维尔</footer>
+      </blockquote>
+
+      <div class='about-copy'>
+        <p class='lead'>
+          这不是一部剧情梗概，也不是逐项罗列象征的观剧手册。它从作品的形式、语言与思想传统出发，追问愿望与诅咒为何拥有同一根源。
+        </p>
+        <p>
+          Jen A. Blue 以炼金术意义上的“腐化”为枢纽，把灵魂宝石、悲叹之种、魔女与圆环之理置于同一转化过程之中；散落于画面、台词、叙事结构与跨文本引用中的线索，由此汇成一条可以追问、也可以反驳的批评路径。
+        </p>
+        <ul aria-label='本书采用的批评视角'>
+          <li>炼金术与腐化</li>
+          <li>后现代批评</li>
+          <li>佛教思想</li>
+          <li>女性主义</li>
+          <li>《浮士德》</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    color: var(--book-pale, #fff4f8);
+    background: var(--book-black, #18151c);
+  }
+
+  .about::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background:
+      radial-gradient(circle at 12% 16%, rgb(232 77 138 / 0.15), transparent 28%),
+      radial-gradient(circle at 88% 78%, rgb(111 74 168 / 0.18), transparent 30%);
+  }
+
+  .about-inner {
+    width: min(100% - 2rem, 76rem);
+    margin-inline: auto;
+    padding-block: clamp(6rem, 11vw, 10.5rem);
+  }
+
+  .section-heading {
+    display: grid;
+    grid-template-columns: minmax(10rem, 0.5fr) minmax(0, 1.5fr);
+    gap: clamp(2rem, 8vw, 8rem);
+    align-items: start;
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+    border-bottom: 1px solid rgb(255 244 248 / 0.18);
+  }
+
+  .section-heading p {
+    margin: 0.7rem 0 0;
+    color: var(--madoka-pink, #e84d8a);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+  }
+
+  h2 {
+    margin: 0;
+    font-family: var(--font-display, var(--font-serif, serif));
+    font-size: clamp(2.65rem, 6vw, 5.4rem);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.16;
+  }
+
+  .about-body {
+    display: grid;
+    grid-template-columns: minmax(17rem, 0.82fr) minmax(0, 1.18fr);
+    gap: clamp(3.5rem, 9vw, 9rem);
+    padding-top: clamp(3rem, 7vw, 5.75rem);
+  }
+
+  blockquote {
+    margin: 0;
+    align-self: start;
+  }
+
+  blockquote::before {
+    content: '“';
+    display: block;
+    height: 2.6rem;
+    color: var(--madoka-pink, #e84d8a);
+    font-family: Georgia, serif;
+    font-size: 5rem;
+    line-height: 1;
+    opacity: 0.8;
+  }
+
+  blockquote p {
+    margin: 1rem 0 1.5rem;
+    font-family: var(--font-display, var(--font-serif, serif));
+    font-size: clamp(1.6rem, 3.2vw, 2.45rem);
+    line-height: 1.65;
+    text-wrap: balance;
+  }
+
+  blockquote footer {
+    color: rgb(255 244 248 / 0.58);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+  }
+
+  .about-copy {
+    max-width: 39rem;
+  }
+
+  .about-copy p {
+    margin: 0;
+    color: rgb(255 244 248 / 0.7);
+    font-family: var(--font-serif, serif);
+    font-size: clamp(0.98rem, 1.55vw, 1.08rem);
+    line-height: 2;
+    text-align: justify;
+  }
+
+  .about-copy .lead {
+    color: var(--book-pale, #fff4f8);
+    font-size: clamp(1.08rem, 1.85vw, 1.28rem);
+  }
+
+  .about-copy p + p {
+    margin-top: 1.5rem;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    padding: 0.55rem 0.85rem;
+    border: 1px solid rgb(255 244 248 / 0.24);
+    color: rgb(255 244 248 / 0.78);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+  }
+
+  li:nth-child(3n + 1) {
+    border-color: rgb(232 77 138 / 0.5);
+  }
+
+  li:nth-child(3n + 2) {
+    border-color: rgb(111 74 168 / 0.65);
+  }
+
+  :global(.about-seed) {
+    position: absolute;
+    z-index: -1;
+    right: -2.5rem;
+    bottom: -5rem;
+    width: clamp(16rem, 32vw, 30rem);
+    color: var(--homura-violet, #6f4aa8);
+    opacity: 0.1;
+    transform: rotate(12deg);
+  }
+
+  @media (max-width: 48rem) {
+    .section-heading,
+    .about-body {
+      grid-template-columns: 1fr;
+    }
+
+    .section-heading,
+    .about-body {
+      gap: 2rem;
+    }
+
+    .about-copy p {
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 35rem) {
+    .about-inner {
+      width: min(100% - 1.25rem, 76rem);
+    }
+  }
+</style>

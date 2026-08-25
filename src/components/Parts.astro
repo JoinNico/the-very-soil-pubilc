@@ -1,0 +1,289 @@
+---
+import { parts } from '../data/site';
+
+const accentVariables = {
+  pink: 'var(--madoka-pink, #e84d8a)',
+  violet: 'var(--homura-violet, #6f4aa8)',
+  red: 'var(--ribbon-red, #ca384b)',
+} as const;
+---
+
+<section class='parts-section' id='parts' aria-labelledby='parts-title'>
+  <div class='parts-inner'>
+    <header class='section-heading'>
+      <div>
+        <p class='section-index'>02 / THREE PARTS</p>
+        <h2 id='parts-title'>沿着三条路径，<br />重新进入《魔圆》。</h2>
+      </div>
+      <p class='section-intro'>
+        从十二集电视动画出发，经过三部外传漫画，最后抵达《叛逆的物语》。全书不是给出唯一答案，而是搭起可供读者检验的解释结构。
+      </p>
+    </header>
+
+    <ol class='parts-list'>
+      {
+        parts.map((part) => (
+          <li class='part-card' style={`--part-accent: ${accentVariables[part.accent]}`}>
+            <span class='part-number' aria-hidden='true'>{part.number}</span>
+            <div class='part-rule' aria-hidden='true'><span /></div>
+            <p class='part-kicker'>PART {part.number}</p>
+            <h3>{part.title}</h3>
+            <p class='part-english' lang='en'>{part.englishTitle}</p>
+            <p class='part-description'>{part.description}</p>
+            <p class='chapter-count'>
+              <strong>{part.chapterCount}</strong>
+              <span>CHAPTERS</span>
+            </p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .parts-section {
+    position: relative;
+    overflow: hidden;
+    color: var(--book-black, #18151c);
+    background: var(--book-pale, #fff4f8);
+  }
+
+  .parts-inner {
+    width: min(100% - 2rem, 76rem);
+    margin-inline: auto;
+    padding-block: clamp(6rem, 11vw, 10rem);
+  }
+
+  .section-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(17rem, 0.7fr);
+    align-items: end;
+    gap: clamp(3rem, 9vw, 9rem);
+  }
+
+  .section-index {
+    margin: 0 0 1.5rem;
+    color: var(--homura-violet, #6f4aa8);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+  }
+
+  h2 {
+    margin: 0;
+    font-family: var(--font-display, var(--font-serif, serif));
+    font-size: clamp(2.65rem, 5.4vw, 5rem);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.18;
+  }
+
+  .section-intro {
+    margin: 0;
+    color: var(--book-gray, #716b75);
+    font-family: var(--font-serif, serif);
+    font-size: 0.98rem;
+    line-height: 1.9;
+  }
+
+  .parts-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: clamp(4rem, 8vw, 7rem) 0 0;
+    padding: 0;
+    border-top: 1px solid rgb(113 107 117 / 0.28);
+    border-bottom: 1px solid rgb(113 107 117 / 0.28);
+    list-style: none;
+  }
+
+  .part-card {
+    position: relative;
+    isolation: isolate;
+    min-height: 32rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: clamp(1.5rem, 3.2vw, 2.5rem);
+  }
+
+  .part-card + .part-card {
+    border-left: 1px solid rgb(113 107 117 / 0.28);
+  }
+
+  .part-card::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: auto -30% -30% 25%;
+    aspect-ratio: 1;
+    border: 1px solid color-mix(in srgb, var(--part-accent) 26%, transparent);
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 2rem color-mix(in srgb, var(--part-accent) 4%, transparent),
+      0 0 0 4.5rem color-mix(in srgb, var(--part-accent) 3%, transparent);
+  }
+
+  .part-number {
+    position: absolute;
+    z-index: -1;
+    top: -0.12em;
+    right: -0.02em;
+    color: color-mix(in srgb, var(--part-accent) 8%, transparent);
+    font-family: var(--font-display, serif);
+    font-size: clamp(8rem, 17vw, 13.5rem);
+    line-height: 1;
+  }
+
+  .part-rule {
+    width: 100%;
+    height: 0.25rem;
+    margin-bottom: 2rem;
+    background: rgb(113 107 117 / 0.12);
+  }
+
+  .part-rule span {
+    display: block;
+    width: 34%;
+    height: 100%;
+    background: var(--part-accent);
+  }
+
+  .part-kicker {
+    margin: 0;
+    color: color-mix(in srgb, var(--part-accent) 78%, var(--book-black, #18151c));
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+  }
+
+  h3 {
+    margin: 1.3rem 0 0;
+    font-family: var(--font-display, var(--font-serif, serif));
+    font-size: clamp(1.65rem, 2.9vw, 2.45rem);
+    font-weight: 550;
+    letter-spacing: 0.035em;
+    line-height: 1.25;
+  }
+
+  .part-english {
+    min-height: 2.6em;
+    margin: 0.65rem 0 0;
+    color: var(--book-gray, #716b75);
+    font-size: 0.62rem;
+    font-weight: 650;
+    letter-spacing: 0.14em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .part-description {
+    margin: 2rem 0 0;
+    color: var(--book-gray, #716b75);
+    font-family: var(--font-serif, serif);
+    font-size: 0.9rem;
+    line-height: 1.85;
+  }
+
+  .chapter-count {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin: auto 0 0;
+    padding-top: 3rem;
+  }
+
+  .chapter-count strong {
+    color: var(--part-accent);
+    font-family: var(--font-display, serif);
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .chapter-count span {
+    color: var(--book-gray, #716b75);
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+  }
+
+  @media (max-width: 52rem) {
+    .section-heading {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .section-intro {
+      max-width: 39rem;
+    }
+
+    .parts-list {
+      grid-template-columns: 1fr;
+    }
+
+    .part-card {
+      min-height: auto;
+      display: grid;
+      grid-template-columns: minmax(8rem, 0.55fr) minmax(0, 1.45fr) auto;
+      grid-template-rows: auto auto auto;
+      gap: 0.6rem 1.5rem;
+      padding-block: 2rem;
+    }
+
+    .part-card + .part-card {
+      border-top: 1px solid rgb(113 107 117 / 0.28);
+      border-left: 0;
+    }
+
+    .part-rule {
+      grid-column: 1 / -1;
+      margin-bottom: 1rem;
+    }
+
+    .part-kicker,
+    h3,
+    .part-english {
+      grid-column: 1;
+    }
+
+    .part-description {
+      grid-column: 2;
+      grid-row: 2 / span 2;
+      margin: 0;
+    }
+
+    .chapter-count {
+      grid-column: 3;
+      grid-row: 2 / span 2;
+      align-self: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .part-card::after {
+      inset: -80% -10% auto auto;
+      width: 18rem;
+    }
+  }
+
+  @media (max-width: 38rem) {
+    .parts-inner {
+      width: min(100% - 1.25rem, 76rem);
+    }
+
+    .part-card {
+      display: flex;
+      min-height: 28rem;
+    }
+
+    .part-description {
+      margin-top: 1.5rem;
+    }
+
+    .chapter-count {
+      margin-top: auto;
+      padding-top: 2.5rem;
+    }
+  }
+</style>

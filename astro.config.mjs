@@ -1,15 +1,13 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import vercel from '@astrojs/vercel';
-import tailwindcss from "@tailwindcss/vite";
-import partytown from '@astrojs/partytown';
+import { loadEnv } from 'vite';
+
+const env = loadEnv(process.env.NODE_ENV ?? 'production', process.cwd(), '');
+const site = env.PUBLIC_SITE_URL?.trim();
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [sitemap(), partytown()],
-	output: 'server',
-	adapter: vercel(),
-	vite: {
-		plugins: [tailwindcss()],
-	},
+	...(site ? { site } : {}),
+	integrations: site ? [sitemap()] : [],
+	output: 'static',
 });
