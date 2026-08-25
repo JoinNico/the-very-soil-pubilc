@@ -1,0 +1,202 @@
+---
+import { showCountingSell, book, sectionPrices } from "../config.json";
+import Checkmark from "./icons/Checkmark.astro";
+---
+
+<div class="bg-book-gray">
+  <div class="pt-12 px-4 sm:px-6 lg:px-8 lg:pt-20">
+    <div class="text-center">
+      <p
+        class="mt- text-3xl leading-9 font-extrabold text-white sm:text-4xl sm:leading-10 lg:text-5xl lg:leading-none"
+      >
+        Compre agora
+      </p><p
+        class="mt-3 max-w-4xl mx-auto text-xl leading-7 text-gray-300 sm:mt-5 sm:leading-8 font-body"
+      >
+        Se junte a outros leitores, e conheça esse romance proibido na Vila do
+        Poti.
+      </p>
+    </div>
+  </div><div class="mt-16 bg-white pb-12 lg:mt-20 lg:pb-20">
+    <div class="relative z-0">
+      <div class="absolute inset-0 h-5/6 bg-book-gray lg:h-2/3"></div><div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
+        <div class="relative lg:grid lg:grid-cols-7">
+          <div
+            class="mx-auto max-w-md lg:mx-0 lg:max-w-none lg:col-start-1 lg:col-end-3 lg:row-start-2 lg:row-end-3"
+          >
+            <div
+              class="h-full flex flex-col rounded-lg shadow-lg overflow-hidden lg:rounded-none lg:rounded-l-lg"
+            >
+			{sectionPrices.priceLeft && <div class="flex-1 flex flex-col">
+                <div class="bg-white px-6 py-10">
+                  <div>
+                    <h3
+                      class="text-center text-2xl font-medium text-book-gray"
+                      id="audiobook"
+                    >
+                      {sectionPrices.priceLeft.title}
+                    </h3><div class="mt-4 flex items-center justify-center">
+                      <span
+                        class="px-1 flex items-start text-6xl tracking-tight text-book-gray"
+                        ><span class="font-extrabold">R${sectionPrices.priceLeft.amount.decimal}</span>
+                      </span><span
+                        class="text-2xl leading-8 font-medium text-gray-500"
+                        >,{sectionPrices.priceLeft.amount.cents}</span
+                      >
+                    </div>
+                  </div>
+                </div><div
+                  class="flex-1 flex flex-col justify-between border-t-2 border-gray-100 p-6 bg-gray-50 sm:p-10 lg:p-6 xl:p-10"
+                >
+                  <ul class="space-y-4">
+					{sectionPrices.priceLeft.details.map((item) => (
+                    <li class="flex items-start">
+                      <div class="flex-shrink-0">
+                        <Checkmark/>
+                      </div><p class="ml-3 text-base font-medium text-gray-500">
+                        {item}
+                      </p>
+                    </li>))}
+                  </ul><div class="mt-8">
+                    <div class="rounded-lg shadow-md">
+                      <a
+                        target="blank"
+                        href={sectionPrices.priceLeft.button.url}
+                        aria-disabled="true"
+                        class="block w-full text-center rounded-lg border border-transparent px-6 py-4 text-lg leading-6 font-semibold text-book-gray bg-slate-300 hover:bg-slate-500 focus:outline-none transition duration-300 ease-in-out"
+                        >{sectionPrices.priceLeft.button.label}</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>}
+            </div>
+          </div><div
+            class="mt-10 max-w-lg mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-start-3 lg:col-end-6 lg:row-start-1 lg:row-end-4"
+          >
+            <div class="relative z-10 rounded-lg shadow-xl">
+              <div
+                class="pointer-events-none absolute inset-0 rounded-lg border-2 border-book-theme"
+                aria-hidden="true"
+              >
+              </div><div
+                class="absolute inset-x-0 top-0 transform translate-y-px"
+              >
+                <div class="flex justify-center transform -translate-y-1/2">
+                  <span
+                    class="inline-flex rounded-full text-book-gray bg-book-theme px-4 py-1 text-sm font-semibold tracking-wider uppercase"
+                    >Mais Popular</span
+                  >
+                </div>
+              </div><div class="bg-white rounded-t-lg px-6 pt-12 pb-10">
+                <div>
+                  <h3
+                    class="text-center text-3xl font-semibold text-book-gray sm:-mx-6"
+                    id="ebook"
+                  >
+				  {sectionPrices.priceMain.title}
+                  </h3><div class="mt-4 flex items-center justify-center">
+                    <span
+                      class="px-1 flex items-start text-6xl tracking-tight text-book-gray sm:text-6xl"
+                      ><span class="font-extrabold">R${sectionPrices.priceMain.amount.decimal}</span>
+                    </span><span class="text-2xl font-medium text-gray-500"
+                      >,{sectionPrices.priceLeft.amount.cents}</span
+                    >
+                  </div>
+                </div>
+              </div><div
+                class="border-t-2 border-gray-100 rounded-b-lg pt-10 pb-8 px-6 bg-gray-50 sm:px-10 sm:py-10"
+              >
+                <ul class="space-y-4">
+					{sectionPrices.priceMain.details.map((item) => (
+                    <li class="flex items-start">
+                      <div class="flex-shrink-0">
+                        <Checkmark/>
+                      </div><p class="ml-3 text-base font-medium text-gray-500">
+                        {item}
+                      </p>
+                    </li>))}
+                </ul><div class="mt-10">
+                  <div class="rounded-lg shadow-md">
+                    <a
+                      target="blank"
+                      href={sectionPrices.priceMain.button.url}
+                      class="block w-full text-center rounded-lg border border-transparent px-6 py-4 text-xl leading-6 font-semibold text-book-gray bg-book-theme hover:bg-yellow-200 focus:outline-none transition duration-300 ease-in-out"
+                      >{sectionPrices.priceMain.button.label}</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><div
+            class="mt-10 mx-auto max-w-md lg:m-0 lg:max-w-none lg:col-start-6 lg:col-end-8 lg:row-start-2 lg:row-end-3"
+          >
+            <div
+              class="flex flex-col rounded-lg shadow-lg overflow-hidden lg:rounded-none lg:rounded-r-lg"
+            >
+             {sectionPrices.priceRight && <div class="flex-1 flex flex-col relative">
+				<!--<div class="absolute inset-x-0 top-5 transform translate-y-px" >
+                  <div class="flex justify-center transform -translate-y-1/2">
+                    <span class="inline-flex rounded-full text-white bg-black px-4 py-1 text-sm font-semibold tracking-wider uppercase">Black Friday</span>
+                  </div>
+                </div>-->
+                <div class="bg-white px-6 py-10">
+                  <div>
+                    <h3
+                      class="text-center text-2xl font-medium text-book-gray"
+                      id="hardcover"
+                    >
+					{sectionPrices.priceRight.title}
+                    </h3>
+                    <div class="mt-4 flex items-center justify-center">
+                      <span class="px-1 flex items-start text-6xl tracking-tight text-book-gray">
+                        <span class="font-extrabold">R${sectionPrices.priceRight.amount.decimal}</span>
+                      </span>
+                      <span class="text-xl font-medium text-gray-500">,{sectionPrices.priceRight.amount.cents}</span>
+
+                    </div>
+                    
+                      {sectionPrices.priceRight.previousAmount &&  <div class="flex items-center justify-center">
+                      <span class="line-through font-light text-gray-500">{sectionPrices.priceRight.previousAmount}</span>
+                    </div>}
+                      
+                  </div>
+                </div><div
+                  class="flex-1 flex flex-col justify-between border-t-2 border-gray-100 p-6 bg-gray-50 sm:p-10 lg:p-6 xl:p-10"
+                >
+                  <ul class="space-y-4">
+                    {sectionPrices.priceRight.details.map((item) => (
+                    <li class="flex items-start">
+                      <div class="flex-shrink-0">
+                        <Checkmark/>
+                      </div><p class="ml-3 text-base font-medium text-gray-500">
+                        {item}
+                      </p>
+                    </li>))}
+                  </ul><div class="mt-8">
+                    <div class="rounded-lg shadow-md">
+                      <a
+                        target="blank"
+                        href={sectionPrices.priceRight.button.url}
+                        class="block w-full text-center rounded-lg border border-transparent px-6 py-4 text-lg leading-6 font-semibold text-book-gray bg-book-theme hover:bg-yellow-200 focus:outline-none transition duration-300 ease-in-out"
+                        >{sectionPrices.priceRight.button.label}</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>}
+            </div>
+          </div>
+        </div>
+      </div>
+      {showCountingSell && <p class="text-center text-base text-gray-700 mt-10">
+        Mais de<!-- -->
+        <span class="font-semibold">2,425 <!-- -->cópias</span>
+        <!-- -->vendidas
+      </p>}
+      
+    </div>
+  </div>
+</div>
