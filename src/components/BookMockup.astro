@@ -1,5 +1,7 @@
 ---
 import { book } from '../data/site';
+
+const coverSrc = `${import.meta.env.BASE_URL}images/cover.jpg`;
 ---
 
 <figure class='book-figure' aria-labelledby='book-model-caption'>
@@ -16,7 +18,7 @@ import { book } from '../data/site';
       <span class='book-face book-front'>
         <img
           class='cover-image'
-          src='/images/cover.jpg'
+          src={coverSrc}
           alt={`《${book.title}》封面`}
           loading='eager'
           decoding='async'

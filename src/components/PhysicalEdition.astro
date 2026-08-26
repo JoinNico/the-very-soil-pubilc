@@ -28,6 +28,8 @@ const phaseCopy = {
 const currentPhase = phaseCopy[release.phase];
 const showEventAction = release.phase === 'pre_event' || release.phase === 'event';
 const showOnlineAction = release.phase === 'online_remainder';
+
+const spreadSrc = `${import.meta.env.BASE_URL}brand/interior-spread.svg`;
 ---
 
 <section class='physical' id='physical-edition' aria-labelledby='physical-title'>
@@ -46,7 +48,7 @@ const showOnlineAction = release.phase === 'online_remainder';
     <figure class='spread-preview'>
       <div class='spread-frame'>
         <img
-          src='/brand/interior-spread.svg'
+          src={spreadSrc}
           width='1200'
           height='800'
           loading='lazy'
