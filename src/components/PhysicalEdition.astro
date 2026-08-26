@@ -1,35 +1,8 @@
 ---
-import { book, release } from '../data/site';
+import { book } from '../data/site';
 import Motifs from './Motifs.astro';
 
-const phaseCopy = {
-  pre_event: {
-    label: '即将参展',
-    title: '两天展期，两天现场售卖。',
-    description: '中文版实体书将在 ComicQuest 5.0 首次与读者见面。售价与摊位号确认后，将在这里同步更新。',
-  },
-  event: {
-    label: '现场售卖中',
-    title: '今天，在 ComicQuest 5.0 见。',
-    description: '实体版正在展会现场售卖。到场前请留意官方活动信息与本页公布的摊位号。',
-  },
-  online_remainder: {
-    label: '展后余量',
-    title: '少量余本，转为线上售卖。',
-    description: '展会已经结束，现场剩余库存将通过线上渠道继续售卖，售完即止。',
-  },
-  sold_out: {
-    label: '本次售罄',
-    title: '谢谢你，让这本书抵达读者。',
-    description: '本批中文版实体书已经售罄。后续信息如有更新，将在本页公布。',
-  },
-} as const;
-
-const currentPhase = phaseCopy[release.phase];
-const showEventAction = release.phase === 'pre_event' || release.phase === 'event';
-const showOnlineAction = release.phase === 'online_remainder';
-
-const spreadSrc = `${import.meta.env.BASE_URL}brand/interior-spread.svg`;
+const imagePath = (filename: string) => `${import.meta.env.BASE_URL}images/${filename}`;
 ---
 
 <section class='physical' id='physical-edition' aria-labelledby='physical-title'>
@@ -38,83 +11,134 @@ const spreadSrc = `${import.meta.env.BASE_URL}brand/interior-spread.svg`;
     <header class='section-heading'>
       <div>
         <p class='section-index'>03 / PHYSICAL EDITION</p>
-        <h2 id='physical-title'>一本可以拿在手里的<br />中文批评读本。</h2>
+        <h2 id='physical-title'>
+          <span lang='zh'>中文实体书</span>
+          <small></small>
+        </h2>
       </div>
-      <p class='edition-note'>
-        以 ISO B6 开本重新编排，保留适合长篇阅读的文字尺度、页边节奏与粉紫双色导航。屏幕之外，它首先仍是一本书。
-      </p>
+      <p class='edition-note'>采用 ISO B6（125 × 176 mm）开本，共 144 页。<br />正文按照长篇批评文本重新编排，并以粉色与紫色区分章节、页码及导航信息。</p>
     </header>
 
-    <figure class='spread-preview'>
-      <div class='spread-frame'>
-        <img
-          src={spreadSrc}
-          width='1200'
-          height='800'
-          loading='lazy'
-          decoding='async'
-          alt='《绝望即壤》中文版内页跨页预览'
-        />
-      </div>
-      <figcaption>中文版内页跨页预览 · 正式实体样书照片将在印制完成后更新</figcaption>
-    </figure>
+    <div class='edition-sequence'>
+      <figure class='edition-figure chapter-opening'>
+        <div class='image-frame image-frame-landscape'>
+          <img
+            src={imagePath('chapter-opening-spread.png')}
+            width='1600'
+            height='1000'
+            loading='lazy'
+            decoding='async'
+            alt='《绝望即壤》章节起始页跨页'
+          />
+        </div>
+        <figcaption>
+          <span>01</span>
+          <strong lang='en'>CHAPTER OPENING</strong>
+          <small>章节起始页</small>
+        </figcaption>
+      </figure>
+
+      <figure class='edition-figure part-system'>
+        <div class='part-pages'>
+          <div class='image-frame image-frame-page'>
+            <img
+              src={imagePath('part01-page.png')}
+              width='739'
+              height='1040'
+              loading='lazy'
+              decoding='async'
+              alt='Part I 电视动画分隔页'
+            />
+          </div>
+          <div class='image-frame image-frame-page'>
+            <img
+              src={imagePath('part02-page.png')}
+              width='739'
+              height='1040'
+              loading='lazy'
+              decoding='async'
+              alt='Part II 外传漫画分隔页'
+            />
+          </div>
+          <div class='image-frame image-frame-page'>
+            <img
+              src={imagePath('part03-page.png')}
+              width='739'
+              height='1040'
+              loading='lazy'
+              decoding='async'
+              alt='Part III 叛逆的物语分隔页'
+            />
+          </div>
+        </div>
+        <figcaption>
+          <span>02</span>
+          <strong lang='en'>THREE PARTS</strong>
+          <small>三个部分</small>
+        </figcaption>
+      </figure>
+
+      <figure class='edition-figure body-text'>
+        <div class='image-frame image-frame-landscape'>
+          <img
+            src={imagePath('body-text-spread.png')}
+            width='1600'
+            height='1000'
+            loading='lazy'
+            decoding='async'
+            alt='《绝望即壤》普通正文双页'
+          />
+        </div>
+        <figcaption>
+          <span>03</span>
+          <strong lang='en'>BODY TEXT</strong>
+          <small>正文</small>
+        </figcaption>
+      </figure>
+
+      <figure class='edition-figure detail-crop'>
+        <div class='image-frame image-frame-detail'>
+          <img
+            src={imagePath('detail-crop.png')}
+            width='1200'
+            height='800'
+            loading='lazy'
+            decoding='async'
+            alt='中文版页码、页眉与魔女文字排版细节'
+          />
+        </div>
+        <figcaption>
+          <span>04</span>
+          <strong lang='en'>DETAILS</strong>
+          <small>页码 / 页眉 / 魔女文字</small>
+        </figcaption>
+      </figure>
+
+      <figure class='edition-figure cover-spread'>
+        <div class='image-frame image-frame-cover'>
+          <img
+            src={imagePath('cover-spread.jpg')}
+            width='1600'
+            height='720'
+            loading='lazy'
+            decoding='async'
+            alt='《绝望即壤》封底、书脊与封面展开图'
+          />
+        </div>
+        <figcaption>
+          <span>05</span>
+          <strong lang='en'>COVER</strong>
+          <small>封底 / 书脊 / 封面</small>
+        </figcaption>
+      </figure>
+    </div>
 
     <dl class='book-specs' aria-label='实体书规格'>
       <div><dt>FORMAT</dt><dd>{book.format}</dd></div>
-      <div><dt>EXTENT</dt><dd>{book.pages} pages</dd></div>
-      <div><dt>EDITION</dt><dd>{book.language}</dd></div>
+      <div><dt>EXTENT</dt><dd>{book.pages} 页</dd></div>
+      <div><dt>EDITION</dt><dd>第一版</dd></div>
       <div><dt>YEAR</dt><dd>{book.editionYear}</dd></div>
     </dl>
-
-    <div class='release-panel'>
-      <div class='release-copy'>
-        <p class='status'><span aria-hidden='true'></span>{currentPhase.label}</p>
-        <h3>{currentPhase.title}</h3>
-        <p>{currentPhase.description}</p>
-      </div>
-
-      <dl class='event-details'>
-        <div>
-          <dt>活动</dt>
-          <dd>{release.event.name}</dd>
-        </div>
-        <div>
-          <dt>日期</dt>
-          <dd>{release.event.dateLabel}</dd>
-        </div>
-        <div>
-          <dt>地点</dt>
-          <dd>{release.event.city} · {release.event.venue}</dd>
-        </div>
-        <div>
-          <dt>摊位</dt>
-          <dd>{release.booth || '待公布'}</dd>
-        </div>
-        <div>
-          <dt>售价</dt>
-          <dd>{release.price || '待公布'}</dd>
-        </div>
-      </dl>
-
-      <div class='release-actions'>
-        {
-          showEventAction && release.interestFormUrl ? (
-            <a class='action action-primary' href={release.interestFormUrl} target='_blank' rel='noreferrer'>填写购买意向</a>
-          ) : showEventAction ? (
-            <span class='action action-disabled' aria-disabled='true'>意向登记即将开放</span>
-          ) : showOnlineAction && release.onlineSaleUrl ? (
-            <a class='action action-primary' href={release.onlineSaleUrl} target='_blank' rel='noreferrer'>购买展后余量</a>
-          ) : showOnlineAction ? (
-            <span class='action action-disabled' aria-disabled='true'>线上余量待公布</span>
-          ) : (
-            <span class='action action-disabled' aria-disabled='true'>本次已售罄</span>
-          )
-        }
-        <a class='action action-secondary' href={release.event.officialUrl} target='_blank' rel='noreferrer'>查看活动官方页面</a>
-      </div>
-
-      {showEventAction && release.notice && <p class='release-notice'>{release.notice}</p>}
-    </div>
   </div>
 </section>
 
@@ -155,7 +179,7 @@ const spreadSrc = `${import.meta.env.BASE_URL}brand/interior-spread.svg`;
   .section-index {
     margin: 0 0 1.5rem;
     color: var(--ribbon-red, #ca384b);
-    font-size: 0.68rem;
+    font-size: 0.76rem;
     font-weight: 700;
     letter-spacing: 0.2em;
   }
@@ -166,7 +190,21 @@ const spreadSrc = `${import.meta.env.BASE_URL}brand/interior-spread.svg`;
     font-size: clamp(2.65rem, 5.2vw, 4.8rem);
     font-weight: 500;
     letter-spacing: 0.02em;
-    line-height: 1.18;
+    line-height: 1.06;
+  }
+
+  h2 span,
+  h2 small {
+    display: block;
+  }
+
+  h2 small {
+    margin-top: 0.75rem;
+    color: var(--book-gray, #716b75);
+    font-family: var(--font-serif, serif);
+    font-size: clamp(1.15rem, 2vw, 1.55rem);
+    font-weight: 500;
+    letter-spacing: 0.08em;
   }
 
   .edition-note {
@@ -177,47 +215,114 @@ const spreadSrc = `${import.meta.env.BASE_URL}brand/interior-spread.svg`;
     line-height: 1.9;
   }
 
-  .spread-preview {
-    margin: clamp(4rem, 8vw, 7rem) 0 0;
+  .edition-sequence {
+    display: grid;
+    gap: clamp(5rem, 11vw, 10rem);
+    margin-top: clamp(4rem, 8vw, 7rem);
   }
 
-  .spread-frame {
+  .edition-figure {
+    margin: 0;
+  }
+
+  .image-frame {
     position: relative;
     overflow: hidden;
-    aspect-ratio: 3 / 2;
     background:
-      radial-gradient(circle at 50% 50%, rgb(24 21 28 / 0.07), transparent 22%),
+      radial-gradient(circle at 50% 50%, rgb(24 21 28 / 0.07), transparent 24%),
       #e9e2e2;
-    box-shadow: 0 1.5rem 4rem rgb(24 21 28 / 0.12);
+    box-shadow: 0 1.25rem 3.5rem rgb(24 21 28 / 0.11);
   }
 
-  .spread-frame::after {
+  .image-frame::after {
     content: '';
     position: absolute;
     inset: 0;
-    border: 1px solid rgb(24 21 28 / 0.15);
+    border: 1px solid rgb(24 21 28 / 0.14);
     pointer-events: none;
   }
 
-  .spread-frame img {
+  .image-frame img {
     width: 100%;
     height: 100%;
     display: block;
     object-fit: cover;
   }
 
+  .image-frame-landscape {
+    aspect-ratio: 8 / 5;
+  }
+
+  .part-system {
+    width: min(92%, 68rem);
+  }
+
+  .part-pages {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(0.75rem, 2.5vw, 2rem);
+  }
+
+  .image-frame-page {
+    aspect-ratio: 739 / 1040;
+  }
+
+  .detail-crop {
+    width: min(62%, 42rem);
+    margin-left: auto;
+  }
+
+  .image-frame-detail {
+    aspect-ratio: 3 / 2;
+  }
+
+  .body-text {
+    width: 100%;
+  }
+
+  .cover-spread {
+    width: min(88%, 66rem);
+    margin-inline: auto;
+  }
+
+  .image-frame-cover {
+    aspect-ratio: 20 / 9;
+  }
+
   figcaption {
-    margin-top: 0.85rem;
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: 0.2rem 0.8rem;
+    width: fit-content;
+    margin-top: 1rem;
     color: var(--book-gray, #716b75);
-    font-size: 0.66rem;
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
+    line-height: 1.5;
+  }
+
+  figcaption > span {
+    grid-row: 1 / span 2;
+    color: var(--ribbon-red, #ca384b);
+    font-weight: 700;
+  }
+
+  figcaption strong {
+    color: var(--book-black, #18151c);
+    font-weight: 700;
+  }
+
+  figcaption small {
+    font-family: var(--font-serif, serif);
+    font-size: 0.74rem;
     letter-spacing: 0.06em;
   }
 
   .book-specs {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    margin: 0;
-    border-bottom: 1px solid rgb(113 107 117 / 0.28);
+    margin: clamp(5rem, 10vw, 9rem) 0 0;
+    border-block: 1px solid rgb(113 107 117 / 0.28);
   }
 
   .book-specs div {
@@ -225,14 +330,14 @@ const spreadSrc = `${import.meta.env.BASE_URL}brand/interior-spread.svg`;
   }
 
   .book-specs div + div {
-    border-left: 1px solid rgb(113 107 117 / 0.28);
     padding-left: clamp(1rem, 3vw, 2rem);
+    border-left: 1px solid rgb(113 107 117 / 0.28);
   }
 
   dt {
     margin: 0 0 0.35rem;
     color: var(--book-gray, #716b75);
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.14em;
   }
@@ -240,161 +345,23 @@ const spreadSrc = `${import.meta.env.BASE_URL}brand/interior-spread.svg`;
   dd {
     margin: 0;
     font-family: var(--font-serif, serif);
-  }
-
-  .book-specs dd {
     font-size: clamp(0.84rem, 1.5vw, 1rem);
-  }
-
-  .release-panel {
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(17rem, 0.95fr);
-    gap: 1.75rem clamp(3rem, 8vw, 8rem);
-    margin-top: clamp(4rem, 8vw, 7rem);
-    padding: clamp(2rem, 5vw, 4.25rem);
-    color: var(--book-pale, #fff4f8);
-    background: var(--book-black, #18151c);
-    box-shadow: 0 1.5rem 4rem rgb(24 21 28 / 0.12);
-  }
-
-  .status {
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
-    margin: 0 0 1.3rem;
-    color: var(--madoka-pink, #e84d8a);
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-  }
-
-  .status span {
-    width: 0.5rem;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: currentColor;
-    box-shadow: 0 0 0 0.3rem rgb(232 77 138 / 0.13);
-  }
-
-  .release-copy h3 {
-    max-width: 12em;
-    margin: 0;
-    font-family: var(--font-display, var(--font-serif, serif));
-    font-size: clamp(2rem, 4.1vw, 3.7rem);
-    font-weight: 500;
-    line-height: 1.2;
-  }
-
-  .release-copy > p:last-child {
-    max-width: 35rem;
-    margin: 1.5rem 0 0;
-    color: rgb(255 244 248 / 0.65);
-    font-family: var(--font-serif, serif);
-    line-height: 1.85;
-  }
-
-  .event-details {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-content: start;
-    margin: 0;
-    border-top: 1px solid rgb(255 244 248 / 0.17);
-  }
-
-  .event-details div {
-    padding: 1rem 0;
-    border-bottom: 1px solid rgb(255 244 248 / 0.17);
-  }
-
-  .event-details div:nth-child(even) {
-    padding-left: 1.5rem;
-    border-left: 1px solid rgb(255 244 248 / 0.17);
-  }
-
-  .event-details dt {
-    color: rgb(255 244 248 / 0.48);
-  }
-
-  .event-details dd {
-    font-size: 0.88rem;
-    line-height: 1.55;
-  }
-
-  .release-actions {
-    grid-column: 1 / -1;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    padding-top: 1rem;
-  }
-
-  .action {
-    min-height: 3.15rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.8rem 1.25rem;
-    border: 1px solid rgb(255 244 248 / 0.56);
-    font-size: 0.76rem;
-    font-weight: 650;
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
-  }
-
-  .action-primary {
-    color: var(--book-black, #18151c);
-    background: var(--book-pale, #fff4f8);
-    border-color: var(--book-pale, #fff4f8);
-  }
-
-  .action-secondary {
-    color: var(--book-pale, #fff4f8);
-  }
-
-  .action[href]:hover {
-    color: var(--book-pale, #fff4f8);
-    background: var(--homura-violet, #6f4aa8);
-    border-color: var(--homura-violet, #6f4aa8);
-  }
-
-  .action:focus-visible {
-    outline: 2px solid var(--madoka-pink, #e84d8a);
-    outline-offset: 3px;
-  }
-
-  .action-disabled {
-    color: rgb(255 244 248 / 0.42);
-    border-color: rgb(255 244 248 / 0.2);
-    cursor: not-allowed;
-  }
-
-  .release-notice {
-    grid-column: 1 / -1;
-    margin: -0.75rem 0 0;
-    color: rgb(255 244 248 / 0.62);
-    font-size: 0.68rem;
-    line-height: 1.65;
   }
 
   :global(.physical-ribbon) {
     position: absolute;
     z-index: -1;
     right: -6rem;
-    bottom: 2rem;
+    bottom: 8rem;
     width: clamp(28rem, 60vw, 58rem);
     color: var(--ribbon-red, #ca384b);
-    opacity: 0.08;
+    opacity: 0.07;
     transform: rotate(-9deg);
   }
 
   @media (max-width: 52rem) {
-    .section-heading,
-    .release-panel {
-      grid-template-columns: 1fr;
-    }
-
     .section-heading {
+      grid-template-columns: 1fr;
       gap: 2rem;
     }
 
@@ -402,9 +369,13 @@ const spreadSrc = `${import.meta.env.BASE_URL}brand/interior-spread.svg`;
       max-width: 39rem;
     }
 
-    .release-actions,
-    .release-notice {
-      grid-column: 1;
+    .part-system,
+    .cover-spread {
+      width: 100%;
+    }
+
+    .detail-crop {
+      width: min(76%, 42rem);
     }
   }
 
@@ -413,31 +384,33 @@ const spreadSrc = `${import.meta.env.BASE_URL}brand/interior-spread.svg`;
       width: min(100% - 1.25rem, 76rem);
     }
 
+    .edition-sequence {
+      gap: 4.5rem;
+    }
+
+    .part-pages {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .part-pages .image-frame:last-child {
+      grid-column: 2;
+    }
+
+    .detail-crop {
+      width: 84%;
+    }
+
     .book-specs {
       grid-template-columns: 1fr 1fr;
     }
 
     .book-specs div:nth-child(3) {
+      padding-left: 0;
       border-left: 0;
     }
 
     .book-specs div:nth-child(n + 3) {
       border-top: 1px solid rgb(113 107 117 / 0.28);
-    }
-
-    .release-panel {
-      margin-inline: -0.625rem;
-      padding-inline: 1.25rem;
-    }
-
-    .release-actions {
-      display: grid;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .action {
-      transition: none;
     }
   }
 </style>

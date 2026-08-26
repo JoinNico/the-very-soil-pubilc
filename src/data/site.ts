@@ -24,6 +24,7 @@ export interface BookPart {
   title: string;
   englishTitle: string;
   chapterCount: number;
+  chapterLabel: string;
   description: string;
   accent: 'pink' | 'violet' | 'red';
 }
@@ -68,19 +69,21 @@ export const parts: BookPart[] = [
   {
     number: 'I',
     title: '电视动画',
-    englishTitle: 'TV ANIME',
+    englishTitle: 'THE SERIES',
     chapterCount: 12,
+    chapterLabel: 'CHAPTER 01—12 / TV SERIES',
     description:
-      '循十二集逐章重访愿望、契约与代价，辨认希望如何在同一套秩序中生成绝望。',
+      '十二章对应电视动画十二话。从具体镜头、台词与叙事细节入手，引入贯穿全书的后现代、佛教、《浮士德》与视觉文化参照。',
     accent: 'pink',
   },
   {
     number: 'II',
     title: '外传漫画',
-    englishTitle: 'MANGA',
+    englishTitle: 'THE MANGA',
     chapterCount: 3,
+    chapterLabel: 'CHAPTER 13—15 / SPIN-OFF MANGA',
     description:
-      '从《和美》《织莉子》与 The Different Story，观察魔法少女体制在异写中的裂隙。',
+      '三章分别讨论《和美☆魔法少女》《魔法少女织莉子》与 The Different Story。同一世界观下，人物关系、魔法少女题材以及原作已建立的规则被重新叙述。',
     accent: 'violet',
   },
   {
@@ -88,8 +91,9 @@ export const parts: BookPart[] = [
     title: '叛逆的物语',
     englishTitle: 'REBELLION',
     chapterCount: 7,
+    chapterLabel: 'CHAPTER 16—22 / REBELLION',
     description:
-      '以七种“反抗”为路径，追问爱、救赎、神明、丘比，以及焰自身所构成的悖论。',
+      '七章围绕《叛逆的物语》展开，标题以“反抗……”贯穿。Jen A. Blue 在这里重新审视电影对前作结局、人物关系与既有解释所作的改动。',
     accent: 'red',
   },
 ];
@@ -101,7 +105,7 @@ export const release: ReleaseInfo = {
     dateLabel: '2026.10.05 — 10.06',
     startDate: '2026-10-05',
     endDate: '2026-10-06',
-    venue: '上海世博展览馆',
+    venue: '世博展览馆',
     city: '上海 · 浦东新区',
     officialUrl:
       'https://www.comicquest.cn/activity/6a625828e6f8ea2754db146d',
@@ -111,7 +115,7 @@ export const release: ReleaseInfo = {
   interestFormUrl: '',
   onlineSaleUrl: '',
   notice:
-    '意向登记仅用于估算印量，不构成预订或留货；展后线上销售以实际余量为准。',
+    '登记仅用于印量统计参考，不构成预订、付款或现场留货。',
 };
 
 export const links = {

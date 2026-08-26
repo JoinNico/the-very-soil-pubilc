@@ -12,30 +12,35 @@ const accentVariables = {
   <div class='parts-inner'>
     <header class='section-heading'>
       <div>
-        <p class='section-index'>02 / THREE PARTS</p>
-        <h2 id='parts-title'>沿着三条路径，<br />重新进入《魔圆》。</h2>
+        <p class='section-index'>02 / CONTENTS</p>
+        <h2 id='parts-title'>三个部分，<br />二十二章</h2>
       </div>
       <p class='section-intro'>
-        从十二集电视动画出发，经过三部外传漫画，最后抵达《叛逆的物语》。全书不是给出唯一答案，而是搭起可供读者检验的解释结构。
+        全书依次讨论电视动画、三部外传漫画与《叛逆的物语》。三个部分分别处理这部作品的入口、偏移与回音。
       </p>
     </header>
 
     <ol class='parts-list'>
       {
-        parts.map((part) => (
-          <li class='part-card' style={`--part-accent: ${accentVariables[part.accent]}`}>
-            <span class='part-number' aria-hidden='true'>{part.number}</span>
-            <div class='part-rule' aria-hidden='true'><span /></div>
-            <p class='part-kicker'>PART {part.number}</p>
-            <h3>{part.title}</h3>
-            <p class='part-english' lang='en'>{part.englishTitle}</p>
-            <p class='part-description'>{part.description}</p>
-            <p class='chapter-count'>
-              <strong>{part.chapterCount}</strong>
-              <span>CHAPTERS</span>
-            </p>
-          </li>
-        ))
+        parts.map((part) => {
+          const [descriptionBeforeTitle, descriptionAfterTitle] = part.description.split('The Different Story');
+
+          return (
+            <li class='part-card' style={`--part-accent: ${accentVariables[part.accent]}`}>
+              <span class='part-number' aria-hidden='true'>{part.number}</span>
+              <div class='part-rule' aria-hidden='true'><span /></div>
+              <p class='part-kicker'>PART {part.number}</p>
+              <h3 lang='en'>{part.englishTitle}</h3>
+              <p class='part-chinese'>{part.title}</p>
+              <p class='part-description'>
+                {descriptionBeforeTitle}
+                {descriptionAfterTitle !== undefined && <em lang='en'>The Different Story</em>}
+                {descriptionAfterTitle}
+              </p>
+              <p class='chapter-range' lang='en'>{part.chapterLabel}</p>
+            </li>
+          );
+        })
       }
     </ol>
   </div>
@@ -65,7 +70,7 @@ const accentVariables = {
   .section-index {
     margin: 0 0 1.5rem;
     color: var(--homura-violet, #6f4aa8);
-    font-size: 0.68rem;
+    font-size: 0.76rem;
     font-weight: 700;
     letter-spacing: 0.2em;
   }
@@ -152,7 +157,7 @@ const accentVariables = {
   .part-kicker {
     margin: 0;
     color: color-mix(in srgb, var(--part-accent) 78%, var(--book-black, #18151c));
-    font-size: 0.65rem;
+    font-size: 0.73rem;
     font-weight: 700;
     letter-spacing: 0.18em;
   }
@@ -161,20 +166,20 @@ const accentVariables = {
     margin: 1.3rem 0 0;
     font-family: var(--font-display, var(--font-serif, serif));
     font-size: clamp(1.65rem, 2.9vw, 2.45rem);
-    font-weight: 550;
+    font-weight: 650;
     letter-spacing: 0.035em;
     line-height: 1.25;
   }
 
-  .part-english {
+  .part-chinese {
     min-height: 2.6em;
     margin: 0.65rem 0 0;
     color: var(--book-gray, #716b75);
-    font-size: 0.62rem;
-    font-weight: 650;
-    letter-spacing: 0.14em;
+    font-family: var(--font-serif, serif);
+    font-size: 0.92rem;
+    font-weight: 550;
+    letter-spacing: 0.08em;
     line-height: 1.5;
-    text-transform: uppercase;
   }
 
   .part-description {
@@ -185,27 +190,18 @@ const accentVariables = {
     line-height: 1.85;
   }
 
-  .chapter-count {
-    display: flex;
-    align-items: baseline;
-    gap: 0.6rem;
+  .part-description em {
+    font-style: italic;
+  }
+
+  .chapter-range {
     margin: auto 0 0;
     padding-top: 3rem;
-  }
-
-  .chapter-count strong {
     color: var(--part-accent);
-    font-family: var(--font-display, serif);
-    font-size: 3rem;
-    font-weight: 500;
-    line-height: 1;
-  }
-
-  .chapter-count span {
-    color: var(--book-gray, #716b75);
-    font-size: 0.58rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.12em;
+    line-height: 1.6;
   }
 
   @media (max-width: 52rem) {
@@ -225,8 +221,7 @@ const accentVariables = {
     .part-card {
       min-height: auto;
       display: grid;
-      grid-template-columns: minmax(8rem, 0.55fr) minmax(0, 1.45fr) auto;
-      grid-template-rows: auto auto auto;
+      grid-template-columns: minmax(8rem, 0.55fr) minmax(0, 1.45fr);
       gap: 0.6rem 1.5rem;
       padding-block: 2rem;
     }
@@ -243,21 +238,19 @@ const accentVariables = {
 
     .part-kicker,
     h3,
-    .part-english {
+    .part-chinese {
       grid-column: 1;
     }
 
     .part-description {
       grid-column: 2;
-      grid-row: 2 / span 2;
+      grid-row: 2 / span 3;
       margin: 0;
     }
 
-    .chapter-count {
-      grid-column: 3;
-      grid-row: 2 / span 2;
-      align-self: center;
-      margin: 0;
+    .chapter-range {
+      grid-column: 2;
+      margin: 1rem 0 0;
       padding: 0;
     }
 
@@ -281,7 +274,7 @@ const accentVariables = {
       margin-top: 1.5rem;
     }
 
-    .chapter-count {
+    .chapter-range {
       margin-top: auto;
       padding-top: 2.5rem;
     }

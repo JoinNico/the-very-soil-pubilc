@@ -5,30 +5,34 @@ import Motifs from './Motifs.astro';
 <section class='about' id='about' aria-labelledby='about-title'>
   <Motifs name='seed' class='about-seed' />
   <div class='about-inner'>
-    <header class='section-heading'>
-      <p>01 / ABOUT</p>
-      <h2 id='about-title'>所谓“土壤”，<br />究竟意味着什么？</h2>
-    </header>
-
-    <div class='about-body'>
-      <blockquote>
-        <p>“或许，绝望恰是孕育人类希望的土壤；<br />未经荒诞，难觅生命真义。”</p>
-        <footer>—— 瓦茨拉夫·哈维尔</footer>
+    <div class='interlude' aria-label='引文'>
+      <blockquote lang='en'>
+        <p>
+          “Perhaps hopelessness is the very soil that nourishes human hope; perhaps one could never find
+          sense in life without first experiencing its absurdity.”
+        </p>
+        <footer>— Václav Havel</footer>
       </blockquote>
+    </div>
+
+    <div class='about-content'>
+      <header class='section-heading'>
+        <h2 id='about-title'>01 / ABOUT</h2>
+      </header>
 
       <div class='about-copy'>
         <p class='lead'>
-          这不是一部剧情梗概，也不是逐项罗列象征的观剧手册。它从作品的形式、语言与思想传统出发，追问愿望与诅咒为何拥有同一根源。
+          <span lang='en'>The Very Soil</span> 是美国动画评论家 Jen A. Blue 于 2015 年 3 月出版的《魔法少女小圆》批评研究。全书从电视动画出发，延伸至《和美☆魔法少女》《魔法少女织莉子》《The Different Story》三部外传漫画，并最终在《叛逆的物语》中收束。
         </p>
         <p>
-          Jen A. Blue 以炼金术意义上的“腐化”为枢纽，把灵魂宝石、悲叹之种、魔女与圆环之理置于同一转化过程之中；散落于画面、台词、叙事结构与跨文本引用中的线索，由此汇成一条可以追问、也可以反驳的批评路径。
+          Jen A. Blue 的文字不断往返于作品内外：一个镜头、一句台词、一种画风的突然侵入，都可能与魔法少女题材、《浮士德》、佛教、戏剧传统或其他文化文本发生联系。她尤其关注符号如何在不同语境中改变意义，以及作品如何借用、拆解并重新组织既有的形式与传统。
         </p>
         <ul aria-label='本书采用的批评视角'>
-          <li>炼金术与腐化</li>
-          <li>后现代批评</li>
-          <li>佛教思想</li>
+          <li>文本精读</li>
+          <li>后现代主义</li>
           <li>女性主义</li>
-          <li>《浮士德》</li>
+          <li>佛教</li>
+          <li>纸芝居</li>
         </ul>
       </div>
     </div>
@@ -57,74 +61,58 @@ import Motifs from './Motifs.astro';
   .about-inner {
     width: min(100% - 2rem, 76rem);
     margin-inline: auto;
-    padding-block: clamp(6rem, 11vw, 10.5rem);
+    padding-block: clamp(4rem, 8vw, 7rem) clamp(6rem, 11vw, 10.5rem);
   }
 
-  .section-heading {
-    display: grid;
-    grid-template-columns: minmax(10rem, 0.5fr) minmax(0, 1.5fr);
-    gap: clamp(2rem, 8vw, 8rem);
-    align-items: start;
-    padding-bottom: clamp(3rem, 6vw, 5rem);
-    border-bottom: 1px solid rgb(255 244 248 / 0.18);
-  }
-
-  .section-heading p {
-    margin: 0.7rem 0 0;
-    color: var(--madoka-pink, #e84d8a);
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-  }
-
-  h2 {
-    margin: 0;
-    font-family: var(--font-display, var(--font-serif, serif));
-    font-size: clamp(2.65rem, 6vw, 5.4rem);
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    line-height: 1.16;
-  }
-
-  .about-body {
-    display: grid;
-    grid-template-columns: minmax(17rem, 0.82fr) minmax(0, 1.18fr);
-    gap: clamp(3.5rem, 9vw, 9rem);
-    padding-top: clamp(3rem, 7vw, 5.75rem);
+  .interlude {
+    padding-block: clamp(2.5rem, 5vw, 4rem);
+    border-block: 1px solid rgb(255 244 248 / 0.18);
   }
 
   blockquote {
-    margin: 0;
-    align-self: start;
-  }
-
-  blockquote::before {
-    content: '“';
-    display: block;
-    height: 2.6rem;
-    color: var(--madoka-pink, #e84d8a);
-    font-family: Georgia, serif;
-    font-size: 5rem;
-    line-height: 1;
-    opacity: 0.8;
+    max-width: 54rem;
+    margin: 0 auto;
   }
 
   blockquote p {
-    margin: 1rem 0 1.5rem;
+    margin: 0;
+    color: rgb(255 244 248 / 0.78);
     font-family: var(--font-display, var(--font-serif, serif));
-    font-size: clamp(1.6rem, 3.2vw, 2.45rem);
-    line-height: 1.65;
+    font-size: clamp(1.05rem, 2vw, 1.4rem);
+    font-style: italic;
+    line-height: 1.75;
+    text-align: center;
     text-wrap: balance;
   }
 
   blockquote footer {
-    color: rgb(255 244 248 / 0.58);
-    font-size: 0.72rem;
+    margin-top: 1.25rem;
+    color: rgb(255 244 248 / 0.5);
+    font-size: 0.76rem;
     letter-spacing: 0.12em;
+    text-align: right;
+  }
+
+  .about-content {
+    display: grid;
+    grid-template-columns: minmax(10rem, 0.5fr) minmax(0, 1.5fr);
+    gap: clamp(2rem, 8vw, 8rem);
+    align-items: start;
+    padding-top: clamp(4rem, 8vw, 7rem);
+  }
+
+  .section-heading h2 {
+    margin: 0.35rem 0 0;
+    color: var(--madoka-pink, #e84d8a);
+    font-family: var(--font-sans, sans-serif);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    line-height: 1.5;
   }
 
   .about-copy {
-    max-width: 39rem;
+    max-width: 45rem;
   }
 
   .about-copy p {
@@ -158,7 +146,7 @@ import Motifs from './Motifs.astro';
     padding: 0.55rem 0.85rem;
     border: 1px solid rgb(255 244 248 / 0.24);
     color: rgb(255 244 248 / 0.78);
-    font-size: 0.7rem;
+    font-size: 0.78rem;
     letter-spacing: 0.08em;
   }
 
@@ -182,13 +170,8 @@ import Motifs from './Motifs.astro';
   }
 
   @media (max-width: 48rem) {
-    .section-heading,
-    .about-body {
+    .about-content {
       grid-template-columns: 1fr;
-    }
-
-    .section-heading,
-    .about-body {
       gap: 2rem;
     }
 
@@ -200,6 +183,10 @@ import Motifs from './Motifs.astro';
   @media (max-width: 35rem) {
     .about-inner {
       width: min(100% - 1.25rem, 76rem);
+    }
+
+    blockquote p {
+      text-align: left;
     }
   }
 </style>
