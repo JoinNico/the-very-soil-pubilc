@@ -1,9 +1,9 @@
 ---
 import { book, links } from '../data/site';
-import BookMockup from './BookMockup.astro';
 import Motifs from './Motifs.astro';
 
 const hasSample = Boolean(links.samplePdf);
+const coverSrc = `${import.meta.env.BASE_URL}images/cover.jpg`;
 ---
 
 <section class='hero' id='hero' aria-labelledby='hero-title'>
@@ -53,7 +53,11 @@ const hasSample = Boolean(links.samplePdf);
     </div>
 
     <div class='hero-book'>
-      <BookMockup />
+      <a class='book-container' href='#physical-edition' aria-label={`查看《${book.title}》实体版信息`}>
+        <div class='book'>
+          <img src={coverSrc} alt={`《${book.title}》封面`} loading='eager' decoding='async' draggable='false' />
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -264,6 +268,37 @@ const hasSample = Boolean(links.samplePdf);
   .hero-book {
     position: relative;
     z-index: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-book .book-container {
+    width: clamp(13rem, 28vw, 19rem);
+  }
+
+  .hero-book .book {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 300 / 480;
+  }
+
+  .hero-book .book > :first-child {
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-book .book::before {
+    left: auto;
+    right: 0;
+    width: 48px;
+    height: 99%;
+    top: 0.5%;
+    transform: translateX(20px) rotateY(90deg);
+  }
+
+  .hero-book .book::after {
+    width: 100%;
+    height: 100%;
   }
 
   :global(.hero-clock),
