@@ -22,6 +22,18 @@ PUBLIC_SITE_URL=https://example.com PUBLIC_BASE_PATH=/repository-name/ npm run b
 
 模板中的 `public/` 资源应通过 `src/utils/publicPath.ts` 生成 URL，不要直接写成 `/images/...`、`/brand/...` 或 `/downloads/...`，否则 GitHub 项目页会把请求发到域名根目录。
 
+## 更新网页字体
+
+网页使用覆盖当前站点文案的 Noto SC 字体子集。修改中文内容后，先运行 `npm run check`；如果报告字体缺字，安装维护工具并重新生成子集：
+
+```bash
+python -m pip install fonttools brotli
+npm run sync:fonts
+npm run check:fonts
+```
+
+字体源固定为 Google Fonts 仓库中的版本，生成结果保存在 `public/fonts/noto/`。
+
 ## 内容与发售状态
 
 书籍元数据、活动信息、按钮链接与发售阶段集中在 `src/data/site.ts`。`release.phase` 支持以下状态：

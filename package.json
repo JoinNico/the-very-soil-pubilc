@@ -4,9 +4,11 @@
 	"private": true,
 	"scripts": {
 		"dev": "astro dev",
-		"build": "astro build",
-		"check": "astro check",
+		"build": "npm run check:fonts && astro build",
+		"check": "astro check && npm run check:fonts",
+		"check:fonts": "node scripts/check-font-coverage.mjs",
 		"preview": "astro preview",
+		"sync:fonts": "python scripts/sync-site-fonts.py",
 		"sync:sample": "node scripts/sync-sample.mjs",
 		"astro": "astro"
 	},
@@ -16,6 +18,7 @@
 	},
 	"devDependencies": {
 		"@astrojs/check": "^0.9.6",
+		"fontkit": "^2.0.4",
 		"typescript": "^5.9.2",
 		"vite": "^7.3.6"
 	},
