@@ -1,9 +1,10 @@
 ---
 import { book, links } from '../data/site';
+import { publicPath } from '../utils/publicPath';
 import Motifs from './Motifs.astro';
 
 const hasSample = Boolean(links.samplePdf);
-const coverSrc = `${import.meta.env.BASE_URL}images/cover.jpg`;
+const coverSrc = publicPath('images/cover.jpg');
 ---
 
 <section class='hero' id='hero' aria-labelledby='hero-title'>

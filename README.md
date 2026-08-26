@@ -14,11 +14,13 @@ npm run build
 npm run preview
 ```
 
-生产域名通过 `PUBLIC_SITE_URL` 提供。未设置时仍可正常构建，但不会生成 canonical URL 与 sitemap：
+生产域名通过 `PUBLIC_SITE_URL` 提供。部署到 GitHub 项目页等子路径时，还需要通过 `PUBLIC_BASE_PATH` 提供带首尾斜杠的部署路径。未设置站点域名时仍可正常构建，但不会生成 canonical URL 与 sitemap：
 
 ```bash
-PUBLIC_SITE_URL=https://example.com npm run build
+PUBLIC_SITE_URL=https://example.com PUBLIC_BASE_PATH=/repository-name/ npm run build
 ```
+
+模板中的 `public/` 资源应通过 `src/utils/publicPath.ts` 生成 URL，不要直接写成 `/images/...`、`/brand/...` 或 `/downloads/...`，否则 GitHub 项目页会把请求发到域名根目录。
 
 ## 内容与发售状态
 

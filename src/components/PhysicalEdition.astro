@@ -1,8 +1,9 @@
 ---
 import { book } from '../data/site';
+import { publicPath } from '../utils/publicPath';
 import Motifs from './Motifs.astro';
 
-const imagePath = (filename: string) => `${import.meta.env.BASE_URL}images/${filename}`;
+const imagePath = (filename: string) => publicPath(`images/${filename}`);
 ---
 
 <section class='physical' id='physical-edition' aria-labelledby='physical-title'>

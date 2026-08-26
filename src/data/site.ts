@@ -1,3 +1,5 @@
+import { publicPath } from '../utils/publicPath';
+
 export type ReleasePhase =
   | 'pre_event'
   | 'event'
@@ -112,14 +114,14 @@ export const release: ReleaseInfo = {
   },
   booth: '待公布',
   price: '待公布',
-  interestFormUrl: '',
+  interestFormUrl: 'https://wj.qq.com/s2/27686157/wolx/',
   onlineSaleUrl: '',
   notice:
     '登记仅用于印量统计参考，不构成预订、付款或现场留货。',
 };
 
 export const links = {
-  samplePdf: '/downloads/the-very-soil-sample.pdf',
+  samplePdf: publicPath('downloads/the-very-soil-sample.pdf'),
 };
 
 export const seo = {
@@ -129,5 +131,5 @@ export const seo = {
   title: '绝望即壤｜《魔法少女小圆》非官方批评研究',
   description:
     'Jen A. Blue《The Very Soil》中文译本展示站：从炼金术、后现代批评、佛学与女性主义重读《魔法少女小圆》。',
-  image: '/brand/og-image.png',
+  image: publicPath('brand/og-image.png'),
 };
