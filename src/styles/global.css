@@ -75,11 +75,15 @@
   --book-black: #18151c;
   --madoka-pink: #e84d8a;
   --homura-violet: #6f4aa8;
+  --sayaka-blue: #4386c6;
+  --mami-gold: #d9a83e;
+  --kyoko-red: #c94c57;
   --ribbon-red: #ca384b;
   --book-gray: #716b75;
   --book-pale: #fff4f8;
   --paper-white: #fffafd;
-  --hairline: rgba(24, 21, 28, 0.18);
+  --rule-faint: rgb(113 107 117 / 0.28);
+  --rule-faint-dark: rgb(255 244 248 / 0.17);
   --page-gutter: clamp(1.25rem, 4vw, 4rem);
   --content-width: 76rem;
   --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
@@ -109,8 +113,10 @@ body {
   margin: 0;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 12% 2%, rgba(232, 77, 138, 0.07), transparent 26rem),
-    radial-gradient(circle at 86% 17%, rgba(111, 74, 168, 0.08), transparent 30rem),
+    radial-gradient(circle at 12% 2%, color-mix(in srgb, var(--madoka-pink) 7%, transparent), transparent 26rem),
+    radial-gradient(circle at 86% 17%, color-mix(in srgb, var(--homura-violet) 8%, transparent), transparent 30rem),
+    radial-gradient(circle at 16% 68%, color-mix(in srgb, var(--sayaka-blue) 5%, transparent), transparent 28rem),
+    radial-gradient(circle at 84% 82%, color-mix(in srgb, var(--mami-gold) 5%, transparent), transparent 25rem),
     var(--book-pale);
 }
 

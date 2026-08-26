@@ -25,8 +25,8 @@ import { book } from '../data/site';
   .site-header {
     position: relative;
     z-index: 20;
-    border-bottom: 1px solid color-mix(in srgb, var(--book-black, #18151c) 16%, transparent);
-    background: color-mix(in srgb, var(--book-pale, #fff4f8) 92%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--book-black) 16%, transparent);
+    background: color-mix(in srgb, var(--book-pale) 92%, transparent);
     backdrop-filter: blur(14px);
   }
 
@@ -45,7 +45,7 @@ import { book } from '../data/site';
     align-items: center;
     gap: 0.75rem;
     min-width: max-content;
-    color: var(--book-black, #18151c);
+    color: var(--book-black);
     text-decoration: none;
   }
 
@@ -55,13 +55,13 @@ import { book } from '../data/site';
     display: grid;
     place-items: center;
     border: 1px solid currentColor;
-    font-family: var(--font-display, serif);
+    font-family: var(--font-display);
     font-size: 0.78rem;
     letter-spacing: 0.04em;
   }
 
   .wordmark-mark span {
-    color: var(--madoka-pink, #e84d8a);
+    color: var(--madoka-pink);
   }
 
   .wordmark-copy {
@@ -76,7 +76,7 @@ import { book } from '../data/site';
   }
 
   .wordmark-copy small {
-    color: var(--book-gray, #716b75);
+    color: var(--book-gray);
     font-family: var(--font-serif, serif);
     font-size: 0.78rem;
   }
@@ -89,7 +89,7 @@ import { book } from '../data/site';
 
   nav a {
     position: relative;
-    color: var(--book-black, #18151c);
+    color: var(--book-black);
     font-size: 0.82rem;
     font-weight: 600;
     letter-spacing: 0.06em;
@@ -103,7 +103,14 @@ import { book } from '../data/site';
     bottom: -0.4rem;
     left: 0;
     height: 1px;
-    background: linear-gradient(90deg, var(--madoka-pink, #e84d8a), var(--homura-violet, #6f4aa8));
+    background: linear-gradient(
+      90deg,
+      var(--madoka-pink),
+      var(--homura-violet),
+      var(--sayaka-blue),
+      var(--mami-gold),
+      var(--kyoko-red)
+    );
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 180ms ease;
@@ -116,7 +123,7 @@ import { book } from '../data/site';
   }
 
   a:focus-visible {
-    outline: 2px solid var(--homura-violet, #6f4aa8);
+    outline: 2px solid var(--homura-violet);
     outline-offset: 4px;
   }
 

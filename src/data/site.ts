@@ -26,7 +26,7 @@ export interface BookPart {
   chapterCount: number;
   chapterLabel: string;
   description: string;
-  accent: 'pink' | 'violet' | 'red';
+  accent: 'madoka' | 'homura' | 'sayaka' | 'mami' | 'kyoko';
 }
 
 export interface ReleaseInfo {
@@ -74,7 +74,7 @@ export const parts: BookPart[] = [
     chapterLabel: 'CHAPTER 01—12 / TV SERIES',
     description:
       '十二章对应电视动画十二话。从具体镜头、台词与叙事细节入手，引入贯穿全书的后现代、佛教、《浮士德》与视觉文化参照。',
-    accent: 'pink',
+    accent: 'sayaka',
   },
   {
     number: 'II',
@@ -84,7 +84,7 @@ export const parts: BookPart[] = [
     chapterLabel: 'CHAPTER 13—15 / SPIN-OFF MANGA',
     description:
       '三章分别讨论《和美☆魔法少女》《魔法少女织莉子》与 The Different Story。同一世界观下，人物关系、魔法少女题材以及原作已建立的规则被重新叙述。',
-    accent: 'violet',
+    accent: 'mami',
   },
   {
     number: 'III',
@@ -94,7 +94,7 @@ export const parts: BookPart[] = [
     chapterLabel: 'CHAPTER 16—22 / REBELLION',
     description:
       '七章围绕《叛逆的物语》展开，标题以“反抗……”贯穿。Jen A. Blue 在这里重新审视电影对前作结局、人物关系与既有解释所作的改动。',
-    accent: 'red',
+    accent: 'kyoko',
   },
 ];
 

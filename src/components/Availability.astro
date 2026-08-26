@@ -161,8 +161,8 @@ const currentStep = {
   .availability {
     position: relative;
     overflow: hidden;
-    color: var(--book-pale, #fff4f8);
-    background: var(--book-black, #18151c);
+    color: var(--book-pale);
+    background: var(--book-black);
   }
 
   .availability::before {
@@ -171,8 +171,10 @@ const currentStep = {
     inset: 0;
     opacity: 0.32;
     background:
-      radial-gradient(circle at 12% 12%, rgb(232 77 138 / 0.18), transparent 30%),
-      radial-gradient(circle at 88% 82%, rgb(111 74 168 / 0.2), transparent 32%);
+      radial-gradient(circle at 12% 12%, color-mix(in srgb, var(--madoka-pink) 18%, transparent), transparent 30%),
+      radial-gradient(circle at 88% 82%, color-mix(in srgb, var(--homura-violet) 20%, transparent), transparent 32%),
+      radial-gradient(circle at 82% 16%, color-mix(in srgb, var(--sayaka-blue) 12%, transparent), transparent 26%),
+      radial-gradient(circle at 18% 92%, color-mix(in srgb, var(--mami-gold) 9%, transparent), transparent 25%);
     pointer-events: none;
   }
 
@@ -192,7 +194,7 @@ const currentStep = {
 
   .section-index {
     margin: 0 0 2rem;
-    color: var(--madoka-pink, #e84d8a);
+    color: var(--madoka-pink);
     font-size: 0.76rem;
     font-weight: 700;
     letter-spacing: 0.2em;
@@ -213,14 +215,14 @@ const currentStep = {
     width: 0.5rem;
     aspect-ratio: 1;
     border-radius: 50%;
-    background: var(--madoka-pink, #e84d8a);
-    box-shadow: 0 0 0 0.3rem rgb(232 77 138 / 0.13);
+    background: var(--madoka-pink);
+    box-shadow: 0 0 0 0.3rem color-mix(in srgb, var(--madoka-pink) 13%, transparent);
   }
 
   h2 {
     max-width: 12em;
     margin: 0;
-    font-family: var(--font-display, var(--font-serif, serif));
+    font-family: var(--font-display);
     font-size: clamp(2.5rem, 5.2vw, 4.8rem);
     font-weight: 500;
     letter-spacing: 0.02em;
@@ -249,6 +251,7 @@ const currentStep = {
     position: absolute;
     inset: 0;
     border: 1px solid rgb(255 244 248 / 0.14);
+    border-bottom: 3px solid var(--kyoko-red);
     pointer-events: none;
   }
 
@@ -263,7 +266,7 @@ const currentStep = {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     margin: clamp(4rem, 8vw, 7rem) 0 0;
-    border-block: 1px solid rgb(255 244 248 / 0.17);
+    border-block: 1px solid var(--rule-faint-dark);
   }
 
   .event-details div {
@@ -273,7 +276,27 @@ const currentStep = {
 
   .event-details div + div {
     padding-left: clamp(1rem, 2vw, 1.5rem);
-    border-left: 1px solid rgb(255 244 248 / 0.17);
+    border-left: 1px solid var(--rule-faint-dark);
+  }
+
+  .event-details div:nth-child(1) dt {
+    color: var(--madoka-pink);
+  }
+
+  .event-details div:nth-child(2) dt {
+    color: color-mix(in srgb, var(--homura-violet) 75%, white);
+  }
+
+  .event-details div:nth-child(3) dt {
+    color: var(--sayaka-blue);
+  }
+
+  .event-details div:nth-child(4) dt {
+    color: var(--mami-gold);
+  }
+
+  .event-details div:nth-child(5) dt {
+    color: var(--kyoko-red);
   }
 
   dt {
@@ -298,13 +321,13 @@ const currentStep = {
     align-items: end;
     margin-top: clamp(3rem, 6vw, 5rem);
     padding: clamp(1.5rem, 3vw, 2.25rem);
-    border-left: 0.2rem solid var(--madoka-pink, #e84d8a);
+    border-left: 0.2rem solid var(--madoka-pink);
     background: rgb(255 244 248 / 0.045);
   }
 
   .phase-summary h3 {
     margin: 0;
-    font-family: var(--font-display, var(--font-serif, serif));
+    font-family: var(--font-display);
     font-size: clamp(1.45rem, 2.8vw, 2.2rem);
     font-weight: 500;
     line-height: 1.3;
@@ -356,19 +379,19 @@ const currentStep = {
   }
 
   .action-primary {
-    color: var(--book-black, #18151c);
-    background: var(--book-pale, #fff4f8);
-    border-color: var(--book-pale, #fff4f8);
+    color: var(--book-black);
+    background: var(--book-pale);
+    border-color: var(--book-pale);
   }
 
   .action[href]:hover {
-    color: var(--book-pale, #fff4f8);
-    background: var(--homura-violet, #6f4aa8);
-    border-color: var(--homura-violet, #6f4aa8);
+    color: var(--book-pale);
+    background: var(--homura-violet);
+    border-color: var(--homura-violet);
   }
 
   .action:focus-visible {
-    outline: 2px solid var(--madoka-pink, #e84d8a);
+    outline: 2px solid var(--madoka-pink);
     outline-offset: 3px;
   }
 
@@ -394,18 +417,18 @@ const currentStep = {
   }
 
   .event-link:hover {
-    color: var(--madoka-pink, #e84d8a);
+    color: var(--mami-gold);
   }
 
   .event-link:focus-visible {
-    outline: 2px solid var(--madoka-pink, #e84d8a);
+    outline: 2px solid var(--madoka-pink);
     outline-offset: 3px;
   }
 
   .release-timeline {
     margin-top: clamp(4.5rem, 9vw, 8rem);
     padding-top: 1.5rem;
-    border-top: 1px solid rgb(255 244 248 / 0.17);
+    border-top: 1px solid var(--rule-faint-dark);
   }
 
   .release-timeline > h3 {
@@ -477,7 +500,7 @@ const currentStep = {
     aspect-ratio: 1;
     border: 1px solid currentColor;
     border-radius: 50%;
-    background: var(--book-black, #18151c);
+    background: var(--book-black);
   }
 
   .release-timeline h4 {
@@ -499,21 +522,28 @@ const currentStep = {
   }
 
   .release-timeline .is-complete .timeline-marker::before,
-  .release-timeline .is-complete .timeline-marker::after,
-  .release-timeline .is-current .timeline-marker::before {
-    background: var(--madoka-pink, #e84d8a);
+  .release-timeline .is-complete .timeline-marker::after {
+    background: var(--sayaka-blue);
   }
 
-  .release-timeline .is-complete .timeline-marker span,
+  .release-timeline .is-current .timeline-marker::before {
+    background: linear-gradient(90deg, var(--sayaka-blue), var(--madoka-pink));
+  }
+
+  .release-timeline .is-complete .timeline-marker span {
+    border-color: var(--sayaka-blue);
+    background: var(--sayaka-blue);
+  }
+
   .release-timeline .is-current .timeline-marker span {
-    border-color: var(--madoka-pink, #e84d8a);
-    background: var(--madoka-pink, #e84d8a);
+    border-color: var(--madoka-pink);
+    background: var(--madoka-pink);
   }
 
   .release-timeline .is-current time,
   .release-timeline .is-current h4,
   .release-timeline .is-current > p {
-    color: var(--madoka-pink, #e84d8a);
+    color: var(--madoka-pink);
     font-weight: 700;
   }
 
@@ -539,7 +569,7 @@ const currentStep = {
     }
 
     .event-details div:nth-child(n + 3) {
-      border-top: 1px solid rgb(255 244 248 / 0.17);
+      border-top: 1px solid var(--rule-faint-dark);
     }
   }
 

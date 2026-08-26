@@ -1,11 +1,5 @@
 ---
 import { parts } from '../data/site';
-
-const accentVariables = {
-  pink: 'var(--madoka-pink, #e84d8a)',
-  violet: 'var(--homura-violet, #6f4aa8)',
-  red: 'var(--ribbon-red, #ca384b)',
-} as const;
 ---
 
 <section class='parts-section' id='parts' aria-labelledby='parts-title'>
@@ -26,7 +20,7 @@ const accentVariables = {
           const [descriptionBeforeTitle, descriptionAfterTitle] = part.description.split('The Different Story');
 
           return (
-            <li class='part-card' style={`--part-accent: ${accentVariables[part.accent]}`}>
+            <li class='part-card' data-accent={part.accent}>
               <span class='part-number' aria-hidden='true'>{part.number}</span>
               <div class='part-rule' aria-hidden='true'><span /></div>
               <p class='part-kicker'>PART {part.number}</p>
@@ -50,8 +44,8 @@ const accentVariables = {
   .parts-section {
     position: relative;
     overflow: hidden;
-    color: var(--book-black, #18151c);
-    background: var(--book-pale, #fff4f8);
+    color: var(--book-black);
+    background: var(--book-pale);
   }
 
   .parts-inner {
@@ -69,7 +63,7 @@ const accentVariables = {
 
   .section-index {
     margin: 0 0 1.5rem;
-    color: var(--homura-violet, #6f4aa8);
+    color: var(--homura-violet);
     font-size: 0.76rem;
     font-weight: 700;
     letter-spacing: 0.2em;
@@ -77,7 +71,7 @@ const accentVariables = {
 
   h2 {
     margin: 0;
-    font-family: var(--font-display, var(--font-serif, serif));
+    font-family: var(--font-display);
     font-size: clamp(2.65rem, 5.4vw, 5rem);
     font-weight: 500;
     letter-spacing: 0.02em;
@@ -86,7 +80,7 @@ const accentVariables = {
 
   .section-intro {
     margin: 0;
-    color: var(--book-gray, #716b75);
+    color: var(--book-gray);
     font-family: var(--font-serif, serif);
     font-size: 0.98rem;
     line-height: 1.9;
@@ -97,8 +91,8 @@ const accentVariables = {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     margin: clamp(4rem, 8vw, 7rem) 0 0;
     padding: 0;
-    border-top: 1px solid rgb(113 107 117 / 0.28);
-    border-bottom: 1px solid rgb(113 107 117 / 0.28);
+    border-top: 1px solid var(--rule-faint);
+    border-bottom: 1px solid var(--rule-faint);
     list-style: none;
   }
 
@@ -110,10 +104,27 @@ const accentVariables = {
     flex-direction: column;
     overflow: hidden;
     padding: clamp(1.5rem, 3.2vw, 2.5rem);
+    --part-accent: var(--madoka-pink);
+  }
+
+  .part-card[data-accent='homura'] {
+    --part-accent: var(--homura-violet);
+  }
+
+  .part-card[data-accent='sayaka'] {
+    --part-accent: var(--sayaka-blue);
+  }
+
+  .part-card[data-accent='mami'] {
+    --part-accent: var(--mami-gold);
+  }
+
+  .part-card[data-accent='kyoko'] {
+    --part-accent: var(--kyoko-red);
   }
 
   .part-card + .part-card {
-    border-left: 1px solid rgb(113 107 117 / 0.28);
+    border-left: 1px solid var(--rule-faint);
   }
 
   .part-card::after {
@@ -135,7 +146,7 @@ const accentVariables = {
     top: -0.12em;
     right: -0.02em;
     color: color-mix(in srgb, var(--part-accent) 8%, transparent);
-    font-family: var(--font-display, serif);
+    font-family: var(--font-display);
     font-size: clamp(8rem, 17vw, 13.5rem);
     line-height: 1;
   }
@@ -156,7 +167,7 @@ const accentVariables = {
 
   .part-kicker {
     margin: 0;
-    color: color-mix(in srgb, var(--part-accent) 78%, var(--book-black, #18151c));
+    color: color-mix(in srgb, var(--part-accent) 78%, var(--book-black));
     font-size: 0.73rem;
     font-weight: 700;
     letter-spacing: 0.18em;
@@ -164,7 +175,7 @@ const accentVariables = {
 
   h3 {
     margin: 1.3rem 0 0;
-    font-family: var(--font-display, var(--font-serif, serif));
+    font-family: var(--font-display);
     font-size: clamp(1.65rem, 2.9vw, 2.45rem);
     font-weight: 650;
     letter-spacing: 0.035em;
@@ -174,7 +185,7 @@ const accentVariables = {
   .part-chinese {
     min-height: 2.6em;
     margin: 0.65rem 0 0;
-    color: var(--book-gray, #716b75);
+    color: var(--book-gray);
     font-family: var(--font-serif, serif);
     font-size: 0.92rem;
     font-weight: 550;
@@ -184,7 +195,7 @@ const accentVariables = {
 
   .part-description {
     margin: 2rem 0 0;
-    color: var(--book-gray, #716b75);
+    color: var(--book-gray);
     font-family: var(--font-serif, serif);
     font-size: 0.9rem;
     line-height: 1.85;
@@ -197,7 +208,7 @@ const accentVariables = {
   .chapter-range {
     margin: auto 0 0;
     padding-top: 3rem;
-    color: var(--part-accent);
+    color: color-mix(in srgb, var(--part-accent) 76%, var(--book-black));
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -227,7 +238,7 @@ const accentVariables = {
     }
 
     .part-card + .part-card {
-      border-top: 1px solid rgb(113 107 117 / 0.28);
+      border-top: 1px solid var(--rule-faint);
       border-left: 0;
     }
 

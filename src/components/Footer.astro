@@ -34,9 +34,17 @@ import { book } from '../data/site';
 
 <style>
   .site-footer {
-    color: var(--book-pale, #fff4f8);
+    color: var(--book-pale);
     background: #0f0d12;
-    border-top: 1px solid rgb(232 77 138 / 0.32);
+    border-top: 2px solid;
+    border-image: linear-gradient(
+        90deg,
+        var(--madoka-pink),
+        var(--homura-violet),
+        var(--sayaka-blue),
+        var(--mami-gold),
+        var(--kyoko-red)
+      ) 1;
   }
 
   .footer-inner {
@@ -67,13 +75,13 @@ import { book } from '../data/site';
     display: grid;
     place-items: center;
     border: 1px solid rgb(255 244 248 / 0.5);
-    color: var(--madoka-pink, #e84d8a);
+    color: var(--madoka-pink);
     font-size: 0.74rem;
     letter-spacing: 0.08em;
   }
 
   .footer-mark strong {
-    font-family: var(--font-display, var(--font-serif, serif));
+    font-family: var(--font-display);
     font-size: 1.25rem;
     font-weight: 500;
     letter-spacing: 0.08em;
@@ -82,7 +90,7 @@ import { book } from '../data/site';
   .footer-lead p {
     max-width: 20em;
     margin: 0;
-    font-family: var(--font-display, var(--font-serif, serif));
+    font-family: var(--font-display);
     font-size: clamp(1.65rem, 4vw, 3.5rem);
     line-height: 1.45;
   }
@@ -108,11 +116,11 @@ import { book } from '../data/site';
 
   nav a:hover,
   .footer-base a:hover {
-    color: var(--madoka-pink, #e84d8a);
+    color: var(--madoka-pink);
   }
 
   a:focus-visible {
-    outline: 2px solid var(--madoka-pink, #e84d8a);
+    outline: 2px solid var(--madoka-pink);
     outline-offset: 4px;
   }
 
@@ -144,7 +152,7 @@ import { book } from '../data/site';
 
   .footer-base a span {
     margin-left: 0.35rem;
-    color: var(--homura-violet, #6f4aa8);
+    color: var(--homura-violet);
   }
 
   @media (max-width: 42rem) {

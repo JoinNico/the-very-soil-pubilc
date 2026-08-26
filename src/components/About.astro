@@ -44,8 +44,8 @@ import Motifs from './Motifs.astro';
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    color: var(--book-pale, #fff4f8);
-    background: var(--book-black, #18151c);
+    color: var(--book-pale);
+    background: var(--book-black);
   }
 
   .about::before {
@@ -54,8 +54,9 @@ import Motifs from './Motifs.astro';
     z-index: -1;
     inset: 0;
     background:
-      radial-gradient(circle at 12% 16%, rgb(232 77 138 / 0.15), transparent 28%),
-      radial-gradient(circle at 88% 78%, rgb(111 74 168 / 0.18), transparent 30%);
+      radial-gradient(circle at 12% 16%, color-mix(in srgb, var(--madoka-pink) 15%, transparent), transparent 28%),
+      radial-gradient(circle at 88% 78%, color-mix(in srgb, var(--homura-violet) 18%, transparent), transparent 30%),
+      radial-gradient(circle at 52% 105%, color-mix(in srgb, var(--sayaka-blue) 9%, transparent), transparent 34%);
   }
 
   .about-inner {
@@ -77,7 +78,7 @@ import Motifs from './Motifs.astro';
   blockquote p {
     margin: 0;
     color: rgb(255 244 248 / 0.78);
-    font-family: var(--font-display, var(--font-serif, serif));
+    font-family: var(--font-display);
     font-size: clamp(1.05rem, 2vw, 1.4rem);
     font-style: italic;
     line-height: 1.75;
@@ -103,7 +104,7 @@ import Motifs from './Motifs.astro';
 
   .section-heading h2 {
     margin: 0.35rem 0 0;
-    color: var(--madoka-pink, #e84d8a);
+    color: var(--madoka-pink);
     font-family: var(--font-sans, sans-serif);
     font-size: 0.75rem;
     font-weight: 700;
@@ -125,7 +126,7 @@ import Motifs from './Motifs.astro';
   }
 
   .about-copy .lead {
-    color: var(--book-pale, #fff4f8);
+    color: var(--book-pale);
     font-size: clamp(1.08rem, 1.85vw, 1.28rem);
   }
 
@@ -150,12 +151,24 @@ import Motifs from './Motifs.astro';
     letter-spacing: 0.08em;
   }
 
-  li:nth-child(3n + 1) {
-    border-color: rgb(232 77 138 / 0.5);
+  li:nth-child(1) {
+    border-color: color-mix(in srgb, var(--madoka-pink) 58%, transparent);
   }
 
-  li:nth-child(3n + 2) {
-    border-color: rgb(111 74 168 / 0.65);
+  li:nth-child(2) {
+    border-color: color-mix(in srgb, var(--homura-violet) 68%, transparent);
+  }
+
+  li:nth-child(3) {
+    border-color: color-mix(in srgb, var(--sayaka-blue) 68%, transparent);
+  }
+
+  li:nth-child(4) {
+    border-color: color-mix(in srgb, var(--mami-gold) 72%, transparent);
+  }
+
+  li:nth-child(5) {
+    border-color: color-mix(in srgb, var(--kyoko-red) 68%, transparent);
   }
 
   :global(.about-seed) {
@@ -164,7 +177,7 @@ import Motifs from './Motifs.astro';
     right: -2.5rem;
     bottom: -5rem;
     width: clamp(16rem, 32vw, 30rem);
-    color: var(--homura-violet, #6f4aa8);
+    color: var(--homura-violet);
     opacity: 0.1;
     transform: rotate(12deg);
   }

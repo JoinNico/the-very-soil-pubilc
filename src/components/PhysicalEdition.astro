@@ -147,7 +147,7 @@ const imagePath = (filename: string) => `${import.meta.env.BASE_URL}images/${fil
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    color: var(--book-black, #18151c);
+    color: var(--book-black);
     background: #fffafb;
   }
 
@@ -158,8 +158,8 @@ const imagePath = (filename: string) => `${import.meta.env.BASE_URL}images/${fil
     inset: 0;
     opacity: 0.45;
     background-image:
-      linear-gradient(rgb(232 77 138 / 0.045) 1px, transparent 1px),
-      linear-gradient(90deg, rgb(111 74 168 / 0.04) 1px, transparent 1px);
+      linear-gradient(color-mix(in srgb, var(--mami-gold) 5%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--sayaka-blue) 5%, transparent) 1px, transparent 1px);
     background-size: 4.25rem 4.25rem;
   }
 
@@ -178,7 +178,7 @@ const imagePath = (filename: string) => `${import.meta.env.BASE_URL}images/${fil
 
   .section-index {
     margin: 0 0 1.5rem;
-    color: var(--ribbon-red, #ca384b);
+    color: color-mix(in srgb, var(--mami-gold) 76%, var(--book-black));
     font-size: 0.76rem;
     font-weight: 700;
     letter-spacing: 0.2em;
@@ -186,7 +186,7 @@ const imagePath = (filename: string) => `${import.meta.env.BASE_URL}images/${fil
 
   h2 {
     margin: 0;
-    font-family: var(--font-display, var(--font-serif, serif));
+    font-family: var(--font-display);
     font-size: clamp(2.65rem, 5.2vw, 4.8rem);
     font-weight: 500;
     letter-spacing: 0.02em;
@@ -200,7 +200,7 @@ const imagePath = (filename: string) => `${import.meta.env.BASE_URL}images/${fil
 
   h2 small {
     margin-top: 0.75rem;
-    color: var(--book-gray, #716b75);
+    color: var(--book-gray);
     font-family: var(--font-serif, serif);
     font-size: clamp(1.15rem, 2vw, 1.55rem);
     font-weight: 500;
@@ -209,7 +209,7 @@ const imagePath = (filename: string) => `${import.meta.env.BASE_URL}images/${fil
 
   .edition-note {
     margin: 0;
-    color: var(--book-gray, #716b75);
+    color: var(--book-gray);
     font-family: var(--font-serif, serif);
     font-size: 0.98rem;
     line-height: 1.9;
@@ -223,6 +223,26 @@ const imagePath = (filename: string) => `${import.meta.env.BASE_URL}images/${fil
 
   .edition-figure {
     margin: 0;
+  }
+
+  .edition-figure:nth-child(1) {
+    --figure-accent: var(--madoka-pink);
+  }
+
+  .edition-figure:nth-child(2) {
+    --figure-accent: var(--homura-violet);
+  }
+
+  .edition-figure:nth-child(3) {
+    --figure-accent: var(--sayaka-blue);
+  }
+
+  .edition-figure:nth-child(4) {
+    --figure-accent: var(--mami-gold);
+  }
+
+  .edition-figure:nth-child(5) {
+    --figure-accent: var(--kyoko-red);
   }
 
   .image-frame {
@@ -239,6 +259,7 @@ const imagePath = (filename: string) => `${import.meta.env.BASE_URL}images/${fil
     position: absolute;
     inset: 0;
     border: 1px solid rgb(24 21 28 / 0.14);
+    border-top: 2px solid var(--figure-accent);
     pointer-events: none;
   }
 
@@ -295,7 +316,7 @@ const imagePath = (filename: string) => `${import.meta.env.BASE_URL}images/${fil
     gap: 0.2rem 0.8rem;
     width: fit-content;
     margin-top: 1rem;
-    color: var(--book-gray, #716b75);
+    color: var(--book-gray);
     font-size: 0.74rem;
     letter-spacing: 0.1em;
     line-height: 1.5;
@@ -303,12 +324,12 @@ const imagePath = (filename: string) => `${import.meta.env.BASE_URL}images/${fil
 
   figcaption > span {
     grid-row: 1 / span 2;
-    color: var(--ribbon-red, #ca384b);
+    color: color-mix(in srgb, var(--figure-accent) 80%, var(--book-black));
     font-weight: 700;
   }
 
   figcaption strong {
-    color: var(--book-black, #18151c);
+    color: var(--book-black);
     font-weight: 700;
   }
 
@@ -322,7 +343,7 @@ const imagePath = (filename: string) => `${import.meta.env.BASE_URL}images/${fil
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     margin: clamp(5rem, 10vw, 9rem) 0 0;
-    border-block: 1px solid rgb(113 107 117 / 0.28);
+    border-block: 1px solid var(--rule-faint);
   }
 
   .book-specs div {
@@ -331,12 +352,12 @@ const imagePath = (filename: string) => `${import.meta.env.BASE_URL}images/${fil
 
   .book-specs div + div {
     padding-left: clamp(1rem, 3vw, 2rem);
-    border-left: 1px solid rgb(113 107 117 / 0.28);
+    border-left: 1px solid var(--rule-faint);
   }
 
   dt {
     margin: 0 0 0.35rem;
-    color: var(--book-gray, #716b75);
+    color: var(--book-gray);
     font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.14em;
@@ -354,7 +375,7 @@ const imagePath = (filename: string) => `${import.meta.env.BASE_URL}images/${fil
     right: -6rem;
     bottom: 8rem;
     width: clamp(28rem, 60vw, 58rem);
-    color: var(--ribbon-red, #ca384b);
+    color: var(--ribbon-red);
     opacity: 0.07;
     transform: rotate(-9deg);
   }
@@ -410,7 +431,7 @@ const imagePath = (filename: string) => `${import.meta.env.BASE_URL}images/${fil
     }
 
     .book-specs div:nth-child(n + 3) {
-      border-top: 1px solid rgb(113 107 117 / 0.28);
+      border-top: 1px solid var(--rule-faint);
     }
   }
 </style>
