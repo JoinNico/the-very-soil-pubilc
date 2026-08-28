@@ -3,84 +3,81 @@ import { book } from '../data/site';
 import { publicPath } from '../utils/publicPath';
 import Motifs from './Motifs.astro';
 
-const imagePath = (filename: string) => publicPath(`images/${filename}`);
+const imagePath = (filename: string) => `${import.meta.env.BASE_URL}images/${filename}`;
+
+const specifications = [
+  ['FORMAT', book.format],
+  ['EXTENT', `${book.pages} pages`],
+  ['EDITION', book.language],
+  ['YEAR', String(book.editionYear)],
+] as const;
 ---
 
 <section class='physical' id='physical-edition' aria-labelledby='physical-title'>
+  <Motifs name='seed' class='physical-seed' />
   <Motifs name='ribbon' class='physical-ribbon' />
-  <div class='physical-inner'>
-    <header class='section-heading'>
-      <div>
-        <p class='section-index'>03 / PHYSICAL EDITION</p>
-        <h2 id='physical-title'>
-          <span lang='zh'>中文实体书</span>
-          <small></small>
-        </h2>
-      </div>
-      <p class='edition-note'>采用 ISO B6（125 × 176 mm）开本，共 144 页。<br />正文按照长篇批评文本重新编排，并以粉色与紫色区分章节、页码及导航信息。</p>
-    </header>
 
-    <div class='edition-sequence'>
-      <figure class='edition-figure chapter-opening'>
-        <div class='image-frame image-frame-landscape'>
+  <p class='edge-note edge-note-left' aria-hidden='true'>INDEPENDENT PUBLISHING</p>
+  <p class='edge-note edge-note-right' aria-hidden='true'>WORDS · EARTH · CONNECTION</p>
+
+  <div class='physical-inner'>
+    <div class='masthead' aria-hidden='true'>
+      <span>THE VERY SOIL</span>
+      <span>A CHINESE TRANSLATION PROJECT</span>
+    </div>
+
+    <div class='edition-layout'>
+      <header class='edition-intro'>
+        <p class='section-index' aria-label='第 03 章'>
+          <span>03</span>
+          <i aria-hidden='true'>/</i>
+        </p>
+
+        <h2 id='physical-title' lang='en'>
+          <span>PHYSICAL</span>
+          <span>EDITION</span>
+        </h2>
+        <p class='chinese-title'>中文版实体书</p>
+
+        <p class='edition-note'>
+          采用 ISO B6（125 × 176 mm）开本，共 144 页。<br />正文按照长篇批评文本重新编排，并以粉色与紫色区分章节、页码及导航信息。
+        </p>
+
+        <dl class='book-specs' aria-label='实体书规格'>
+          {
+            specifications.map(([term, value]) => (
+              <div>
+                <dt>{term}</dt>
+                <dd>{value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </header>
+
+      <div class='edition-collage' aria-label='实体书封面与内页设计展示'>
+        <div class='color-block color-block-pink' aria-hidden='true'></div>
+        <div class='color-block color-block-violet' aria-hidden='true'></div>
+
+        <figure class='photo photo-opening'>
           <img
             src={imagePath('chapter-opening-spread.png')}
             width='1600'
             height='1000'
             loading='lazy'
             decoding='async'
-            alt='《绝望即壤》章节起始页跨页'
+            alt='《绝望即壤》章节起始页实体书跨页'
           />
-        </div>
-        <figcaption>
-          <span>01</span>
-          <strong lang='en'>CHAPTER OPENING</strong>
-          <small>章节起始页</small>
-        </figcaption>
-      </figure>
+          <figcaption><span>01</span> CHAPTER OPENING / 章节起始页</figcaption>
+        </figure>
 
-      <figure class='edition-figure part-system'>
-        <div class='part-pages'>
-          <div class='image-frame image-frame-page'>
-            <img
-              src={imagePath('part01-page.png')}
-              width='739'
-              height='1040'
-              loading='lazy'
-              decoding='async'
-              alt='Part I 电视动画分隔页'
-            />
-          </div>
-          <div class='image-frame image-frame-page'>
-            <img
-              src={imagePath('part02-page.png')}
-              width='739'
-              height='1040'
-              loading='lazy'
-              decoding='async'
-              alt='Part II 外传漫画分隔页'
-            />
-          </div>
-          <div class='image-frame image-frame-page'>
-            <img
-              src={imagePath('part03-page.png')}
-              width='739'
-              height='1040'
-              loading='lazy'
-              decoding='async'
-              alt='Part III 叛逆的物语分隔页'
-            />
-          </div>
-        </div>
-        <figcaption>
-          <span>02</span>
-          <strong lang='en'>THREE PARTS</strong>
-          <small>三个部分</small>
-        </figcaption>
-      </figure>
+        <aside class='quote-card' aria-label='装帧说明'>
+          <span aria-hidden='true'></span>
+          <p>让文字在纸页上<br />获得呼吸与秩序。</p>
+          <small lang='en'>TEXT BECOMES OBJECT</small>
+        </aside>
 
-      <figure class='edition-figure body-text'>
-        <div class='image-frame image-frame-landscape'>
+        <figure class='photo photo-body'>
           <img
             src={imagePath('body-text-spread.png')}
             width='1600'
@@ -89,16 +86,25 @@ const imagePath = (filename: string) => publicPath(`images/${filename}`);
             decoding='async'
             alt='《绝望即壤》普通正文双页'
           />
-        </div>
-        <figcaption>
-          <span>03</span>
-          <strong lang='en'>BODY TEXT</strong>
-          <small>正文</small>
-        </figcaption>
-      </figure>
+          <figcaption><span>02</span> BODY TEXT / 正文</figcaption>
+        </figure>
 
-      <figure class='edition-figure detail-crop'>
-        <div class='image-frame image-frame-detail'>
+        <figure class='book-cover'>
+          <div class='book-object'>
+            <span class='page-edges' aria-hidden='true'></span>
+            <img
+              src={imagePath('cover.jpg')}
+              width='1483'
+              height='2111'
+              loading='lazy'
+              decoding='async'
+              alt='《绝望即壤》中文版封面'
+            />
+          </div>
+          <figcaption><span>03</span> B6 EDITION / 中文版</figcaption>
+        </figure>
+
+        <figure class='photo photo-detail'>
           <img
             src={imagePath('detail-crop.png')}
             width='1200'
@@ -107,332 +113,663 @@ const imagePath = (filename: string) => publicPath(`images/${filename}`);
             decoding='async'
             alt='中文版页码、页眉与魔女文字排版细节'
           />
-        </div>
-        <figcaption>
-          <span>04</span>
-          <strong lang='en'>DETAILS</strong>
-          <small>页码 / 页眉 / 魔女文字</small>
-        </figcaption>
-      </figure>
-
-      <figure class='edition-figure cover-spread'>
-        <div class='image-frame image-frame-cover'>
-          <img
-            src={imagePath('cover-spread.jpg')}
-            width='1600'
-            height='720'
-            loading='lazy'
-            decoding='async'
-            alt='《绝望即壤》封底、书脊与封面展开图'
-          />
-        </div>
-        <figcaption>
-          <span>05</span>
-          <strong lang='en'>COVER</strong>
-          <small>封底 / 书脊 / 封面</small>
-        </figcaption>
-      </figure>
+          <figcaption><span>04</span> TYPOGRAPHIC DETAILS / 排版细节</figcaption>
+        </figure>
+      </div>
     </div>
 
-    <dl class='book-specs' aria-label='实体书规格'>
-      <div><dt>FORMAT</dt><dd>{book.format}</dd></div>
-      <div><dt>EXTENT</dt><dd>{book.pages} 页</dd></div>
-      <div><dt>EDITION</dt><dd>第一版</dd></div>
-      <div><dt>YEAR</dt><dd>{book.editionYear}</dd></div>
-    </dl>
+    <footer class='section-folio' aria-hidden='true'>
+      <span>03</span>
+      <p>DESIGNED FOR A LONG-FORM CRITICAL TEXT</p>
+      <span>144 P.</span>
+    </footer>
   </div>
 </section>
 
 <style>
   .physical {
+    --physical-pink: #c78596;
+    --physical-violet: #75658f;
+    --physical-paper: #f7f4f1;
     position: relative;
     isolation: isolate;
     overflow: hidden;
     color: var(--book-black);
-    background: #fffafb;
+    background: var(--physical-paper);
   }
 
   .physical::before {
     content: '';
     position: absolute;
-    z-index: -1;
+    z-index: -3;
     inset: 0;
-    opacity: 0.45;
+    opacity: 0.35;
     background-image:
-      linear-gradient(color-mix(in srgb, var(--mami-gold) 5%, transparent) 1px, transparent 1px),
-      linear-gradient(90deg, color-mix(in srgb, var(--sayaka-blue) 5%, transparent) 1px, transparent 1px);
-    background-size: 4.25rem 4.25rem;
+      radial-gradient(circle at 15% 20%, rgb(117 101 143 / 0.1) 0 0.7px, transparent 0.8px),
+      radial-gradient(circle at 70% 66%, rgb(199 133 150 / 0.1) 0 0.65px, transparent 0.75px);
+    background-position: 0 0, 4px 5px;
+    background-size: 8px 8px, 9px 9px;
+  }
+
+  .physical::after {
+    content: '';
+    position: absolute;
+    z-index: -2;
+    inset: 2rem 4.25rem;
+    border-inline: 1px solid rgb(24 21 28 / 0.24);
+    pointer-events: none;
   }
 
   .physical-inner {
-    width: min(100% - 2rem, 76rem);
+    width: min(100% - 8.5rem, 96rem);
     margin-inline: auto;
-    padding-block: clamp(6rem, 11vw, 10rem);
+    padding-block: 2.25rem 2rem;
   }
 
-  .section-heading {
+  .masthead {
+    min-height: 2.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 4rem;
+    border-bottom: 1px solid rgb(24 21 28 / 0.46);
+    font-family: var(--font-latin);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .masthead span:last-child {
+    color: var(--physical-violet);
+    font-family: var(--font-sans);
+    font-size: 0.61rem;
+    letter-spacing: 0.2em;
+  }
+
+  .edition-layout {
     display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(17rem, 0.65fr);
-    align-items: end;
-    gap: clamp(3rem, 9vw, 9rem);
+    grid-template-columns: minmax(18rem, 0.38fr) minmax(0, 1fr);
+    gap: clamp(2.5rem, 5vw, 5.5rem);
+    padding-block: clamp(3.25rem, 6.5vw, 6rem) 3rem;
+  }
+
+  .edition-intro {
+    position: relative;
+    z-index: 4;
+    align-self: start;
+    padding-left: 0.55rem;
   }
 
   .section-index {
-    margin: 0 0 1.5rem;
-    color: color-mix(in srgb, var(--mami-gold) 76%, var(--book-black));
-    font-size: 0.76rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+    margin: 0 0 1.3rem;
+    font-family: var(--font-latin);
+    line-height: 1;
+  }
+
+  .section-index span {
+    color: var(--physical-pink);
+    font-size: clamp(4.5rem, 6.6vw, 6.7rem);
+    letter-spacing: -0.055em;
+  }
+
+  .section-index i {
+    color: var(--book-black);
+    font-size: clamp(3rem, 4.2vw, 4.5rem);
+    font-weight: 400;
+    transform: translateY(0.08em);
   }
 
   h2 {
     margin: 0;
-    font-family: var(--font-display);
-    font-size: clamp(2.65rem, 5.2vw, 4.8rem);
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    line-height: 1.06;
+    font-family: var(--font-latin);
+    font-size: clamp(3.4rem, 5.35vw, 5.45rem);
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 0.88;
   }
 
-  h2 span,
-  h2 small {
+  h2 span {
     display: block;
   }
 
-  h2 small {
-    margin-top: 0.75rem;
-    color: var(--book-gray);
-    font-family: var(--font-serif, serif);
-    font-size: clamp(1.15rem, 2vw, 1.55rem);
-    font-weight: 500;
+  h2 span + span {
+    margin-top: 0.18em;
+  }
+
+  .chinese-title {
+    margin: 1.25rem 0 0;
+    color: var(--physical-violet);
+    font-size: clamp(1.35rem, 2.2vw, 2rem);
     letter-spacing: 0.08em;
   }
 
   .edition-note {
-    margin: 0;
-    color: var(--book-gray);
-    font-family: var(--font-serif, serif);
-    font-size: 0.98rem;
-    line-height: 1.9;
-  }
-
-  .edition-sequence {
-    display: grid;
-    gap: clamp(5rem, 11vw, 10rem);
-    margin-top: clamp(4rem, 8vw, 7rem);
-  }
-
-  .edition-figure {
-    margin: 0;
-  }
-
-  .edition-figure:nth-child(1) {
-    --figure-accent: var(--madoka-pink);
-  }
-
-  .edition-figure:nth-child(2) {
-    --figure-accent: var(--homura-violet);
-  }
-
-  .edition-figure:nth-child(3) {
-    --figure-accent: var(--sayaka-blue);
-  }
-
-  .edition-figure:nth-child(4) {
-    --figure-accent: var(--mami-gold);
-  }
-
-  .edition-figure:nth-child(5) {
-    --figure-accent: var(--kyoko-red);
-  }
-
-  .image-frame {
-    position: relative;
-    overflow: hidden;
-    background:
-      radial-gradient(circle at 50% 50%, rgb(24 21 28 / 0.07), transparent 24%),
-      #e9e2e2;
-    box-shadow: 0 1.25rem 3.5rem rgb(24 21 28 / 0.11);
-  }
-
-  .image-frame::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border: 1px solid rgb(24 21 28 / 0.14);
-    border-top: 2px solid var(--figure-accent);
-    pointer-events: none;
-  }
-
-  .image-frame img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-  }
-
-  .image-frame-landscape {
-    aspect-ratio: 8 / 5;
-  }
-
-  .part-system {
-    width: min(92%, 68rem);
-  }
-
-  .part-pages {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(0.75rem, 2.5vw, 2rem);
-  }
-
-  .image-frame-page {
-    aspect-ratio: 739 / 1040;
-  }
-
-  .detail-crop {
-    width: min(62%, 42rem);
-    margin-left: auto;
-  }
-
-  .image-frame-detail {
-    aspect-ratio: 3 / 2;
-  }
-
-  .body-text {
-    width: 100%;
-  }
-
-  .cover-spread {
-    width: min(88%, 66rem);
-    margin-inline: auto;
-  }
-
-  .image-frame-cover {
-    aspect-ratio: 20 / 9;
-  }
-
-  figcaption {
-    display: grid;
-    grid-template-columns: 2rem minmax(0, 1fr);
-    gap: 0.2rem 0.8rem;
-    width: fit-content;
-    margin-top: 1rem;
-    color: var(--book-gray);
-    font-size: 0.74rem;
-    letter-spacing: 0.1em;
-    line-height: 1.5;
-  }
-
-  figcaption > span {
-    grid-row: 1 / span 2;
-    color: color-mix(in srgb, var(--figure-accent) 80%, var(--book-black));
-    font-weight: 700;
-  }
-
-  figcaption strong {
-    color: var(--book-black);
-    font-weight: 700;
-  }
-
-  figcaption small {
-    font-family: var(--font-serif, serif);
-    font-size: 0.74rem;
-    letter-spacing: 0.06em;
+    max-width: 31rem;
+    margin: clamp(2rem, 4vw, 3.5rem) 0 0;
+    color: #49434c;
+    font-size: clamp(0.92rem, 1.2vw, 1.02rem);
+    line-height: 2;
+    text-wrap: pretty;
   }
 
   .book-specs {
+    position: relative;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    margin: clamp(5rem, 10vw, 9rem) 0 0;
-    border-block: 1px solid var(--rule-faint);
+    max-width: 26rem;
+    margin: clamp(2.5rem, 4.5vw, 4.25rem) 0 0;
+  }
+
+  .book-specs::before {
+    content: '';
+    position: absolute;
+    top: 0.25rem;
+    bottom: 0.25rem;
+    left: 5.55rem;
+    width: 1px;
+    background: var(--physical-pink);
   }
 
   .book-specs div {
-    padding: 1.25rem 0;
-  }
-
-  .book-specs div + div {
-    padding-left: clamp(1rem, 3vw, 2rem);
-    border-left: 1px solid var(--rule-faint);
+    display: grid;
+    grid-template-columns: 5.55rem minmax(0, 1fr);
+    align-items: baseline;
+    min-height: 2.9rem;
   }
 
   dt {
-    margin: 0 0 0.35rem;
-    color: var(--book-gray);
-    font-size: 0.7rem;
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 0.62rem;
     font-weight: 700;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.19em;
   }
 
   dd {
     margin: 0;
-    font-family: var(--font-serif, serif);
-    font-size: clamp(0.84rem, 1.5vw, 1rem);
+    padding-left: 1.8rem;
+    font-family: var(--font-latin);
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+  }
+
+  .edition-collage {
+    position: relative;
+    min-width: 0;
+    min-height: clamp(44rem, 59vw, 56rem);
+  }
+
+  .color-block {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .color-block-pink {
+    top: 8rem;
+    left: -3.5rem;
+    width: 26%;
+    height: 26rem;
+    background: color-mix(in srgb, var(--physical-pink) 62%, white);
+  }
+
+  .color-block-violet {
+    right: -1.2rem;
+    bottom: 7rem;
+    width: 58%;
+    height: 3rem;
+    background: color-mix(in srgb, var(--physical-violet) 76%, white);
+  }
+
+  figure {
+    margin: 0;
+  }
+
+  .photo {
+    position: absolute;
+  }
+
+  .photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 1px solid rgb(24 21 28 / 0.12);
+    background: #e5e0dc;
+    box-shadow: 0 1.5rem 3.5rem rgb(24 21 28 / 0.16);
+  }
+
+  .photo-opening {
+    z-index: 1;
+    top: 0;
+    right: 6%;
+    width: 81%;
+  }
+
+  .photo-opening img {
+    aspect-ratio: 8 / 5;
+  }
+
+  .photo-opening::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 1rem -1rem -1rem 1rem;
+    background: #e4ded9;
+  }
+
+  .photo-body {
+    z-index: 2;
+    right: 3%;
+    bottom: 0;
+    width: 61%;
+  }
+
+  .photo-body img {
+    aspect-ratio: 8 / 5;
+  }
+
+  .photo-detail {
+    z-index: 3;
+    right: -2%;
+    bottom: 2.5rem;
+    width: 45%;
+    transform: translateY(25%);
+  }
+
+  .photo-detail img {
+    aspect-ratio: 3 / 2;
+  }
+
+  figcaption {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-top: 0.65rem;
+    color: rgb(24 21 28 / 0.62);
+    font-family: var(--font-sans);
+    font-size: 0.56rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+  }
+
+  figcaption span {
+    color: var(--physical-pink);
+  }
+
+  .quote-card {
+    position: absolute;
+    z-index: 2;
+    top: 3.5rem;
+    right: -1rem;
+    width: 10.25rem;
+    padding: 1.5rem 1.35rem;
+    color: var(--physical-pink);
+    background: rgb(247 244 241 / 0.94);
+    box-shadow: 0 1rem 2.5rem rgb(24 21 28 / 0.1);
+  }
+
+  .quote-card > span {
+    display: block;
+    width: 1rem;
+    height: 1px;
+    margin-bottom: 1.1rem;
+    background: currentColor;
+  }
+
+  .quote-card p {
+    margin: 0;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+  }
+
+  .quote-card small {
+    display: block;
+    margin-top: 1rem;
+    color: var(--physical-violet);
+    font-family: var(--font-sans);
+    font-size: 0.48rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+  }
+
+  .book-cover {
+    position: absolute;
+    z-index: 4;
+    bottom: 1rem;
+    left: 0;
+    width: 31%;
+  }
+
+  .book-object {
+    position: relative;
+    margin-left: 0.8rem;
+    filter: drop-shadow(0 1.5rem 1.75rem rgb(24 21 28 / 0.25));
+    transform: perspective(62rem) rotateY(7deg) rotateZ(-1.5deg);
+    transform-origin: left center;
+  }
+
+  .book-object::before {
+    content: '';
+    position: absolute;
+    z-index: -2;
+    inset: 0.45rem 0.45rem -0.55rem -0.6rem;
+    border-radius: 2px;
+    background: #11182b;
+  }
+
+  .book-object::after {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    inset: 0 auto 0 0;
+    width: 10%;
+    background: linear-gradient(90deg, rgb(0 0 0 / 0.45), transparent);
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+
+  .book-object img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1483 / 2111;
+    object-fit: cover;
+  }
+
+  .page-edges {
+    position: absolute;
+    z-index: -1;
+    top: 0.45rem;
+    right: -0.55rem;
+    bottom: -0.3rem;
+    width: 0.8rem;
+    border-radius: 0 2px 2px 0;
+    background: repeating-linear-gradient(180deg, #f7f3e9 0 2px, #cac3b7 2px 3px);
+  }
+
+  .book-cover figcaption {
+    margin-left: 0.8rem;
+  }
+
+  .section-folio {
+    display: grid;
+    grid-template-columns: 3rem 1fr 3rem;
+    align-items: end;
+    gap: 1rem;
+    min-height: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgb(24 21 28 / 0.46);
+    color: var(--physical-violet);
+    font-family: var(--font-sans);
+    font-size: 0.52rem;
+    font-weight: 700;
+    letter-spacing: 0.17em;
+  }
+
+  .section-folio p {
+    margin: 0;
+    text-align: center;
+  }
+
+  .section-folio span:last-child {
+    text-align: right;
+  }
+
+  .edge-note {
+    position: absolute;
+    z-index: 5;
+    top: 50%;
+    margin: 0;
+    color: #4b4357;
+    font-family: var(--font-sans);
+    font-size: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    writing-mode: vertical-rl;
+  }
+
+  .edge-note-left {
+    left: 1.6rem;
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  .edge-note-right {
+    right: 1.6rem;
+    transform: translateY(-50%);
+  }
+
+  :global(.physical-seed) {
+    position: absolute;
+    z-index: -1;
+    top: 27%;
+    right: 1.35rem;
+    width: 6.5rem;
+    color: var(--physical-violet);
+    opacity: 0.38;
+    transform: rotate(15deg);
   }
 
   :global(.physical-ribbon) {
     position: absolute;
     z-index: -1;
-    right: -6rem;
-    bottom: 8rem;
-    width: clamp(28rem, 60vw, 58rem);
-    color: var(--ribbon-red);
-    opacity: 0.07;
-    transform: rotate(-9deg);
+    right: 4.5rem;
+    bottom: 3rem;
+    width: clamp(25rem, 48vw, 48rem);
+    color: var(--physical-pink);
+    opacity: 0.17;
+    transform: rotate(-5deg);
   }
 
-  @media (max-width: 52rem) {
-    .section-heading {
+  @media (max-width: 72rem) {
+    .physical::after {
+      inset-inline: 2rem;
+    }
+
+    .physical-inner {
+      width: min(100% - 4rem, 96rem);
+    }
+
+    .edition-layout {
+      grid-template-columns: minmax(17rem, 0.42fr) minmax(0, 1fr);
+      gap: 2.5rem;
+    }
+
+    .edition-collage {
+      min-height: 44rem;
+    }
+
+    .edge-note,
+    :global(.physical-seed) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 54rem) {
+    .edition-layout {
       grid-template-columns: 1fr;
-      gap: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    .edition-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.8fr);
+      gap: 0 3rem;
+      padding-left: 0;
+    }
+
+    .section-index,
+    h2,
+    .chinese-title {
+      grid-column: 1;
     }
 
     .edition-note {
-      max-width: 39rem;
+      grid-column: 2;
+      grid-row: 1 / span 3;
+      align-self: end;
+      margin-top: 0;
     }
 
-    .part-system,
-    .cover-spread {
-      width: 100%;
+    .book-specs {
+      grid-column: 1 / -1;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      max-width: none;
+      border-block: 1px solid rgb(24 21 28 / 0.25);
     }
 
-    .detail-crop {
-      width: min(76%, 42rem);
+    .book-specs::before {
+      display: none;
+    }
+
+    .book-specs div {
+      display: block;
+      min-height: auto;
+      padding: 0.9rem 1rem;
+    }
+
+    .book-specs div:first-child {
+      padding-left: 0;
+    }
+
+    .book-specs div + div {
+      border-left: 1px solid rgb(24 21 28 / 0.2);
+    }
+
+    dd {
+      margin-top: 0.35rem;
+      padding-left: 0;
+    }
+
+    .edition-collage {
+      min-height: clamp(44rem, 96vw, 50rem);
     }
   }
 
   @media (max-width: 38rem) {
+    .physical::after {
+      inset: 0.75rem;
+    }
+
     .physical-inner {
-      width: min(100% - 1.25rem, 76rem);
+      width: min(100% - 1.5rem, 96rem);
+      padding-block: 1.5rem;
     }
 
-    .edition-sequence {
-      gap: 4.5rem;
+    .masthead {
+      gap: 1.5rem;
     }
 
-    .part-pages {
-      grid-template-columns: 1fr 1fr;
+    .masthead span:last-child {
+      margin-left: auto;
+      text-align: right;
     }
 
-    .part-pages .image-frame:last-child {
-      grid-column: 2;
+    .edition-layout {
+      gap: 3.5rem;
+      padding-top: 3rem;
     }
 
-    .detail-crop {
-      width: 84%;
+    .edition-intro {
+      display: block;
+    }
+
+    .section-index {
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: clamp(3.3rem, 18vw, 4.7rem);
+    }
+
+    .edition-note {
+      margin-top: 2.5rem;
     }
 
     .book-specs {
       grid-template-columns: 1fr 1fr;
     }
 
-    .book-specs div:nth-child(3) {
+    .book-specs div {
+      padding: 0.9rem 0.8rem;
+    }
+
+    .book-specs div:nth-child(odd) {
       padding-left: 0;
       border-left: 0;
     }
 
     .book-specs div:nth-child(n + 3) {
-      border-top: 1px solid var(--rule-faint);
+      border-top: 1px solid rgb(24 21 28 / 0.2);
+    }
+
+    .edition-collage {
+      min-height: 46rem;
+    }
+
+    .photo-opening {
+      right: 0;
+      width: 96%;
+    }
+
+    .photo-opening img {
+      aspect-ratio: 1.42 / 1;
+    }
+
+    .quote-card {
+      top: 2rem;
+      right: 0;
+      width: 7.3rem;
+      padding: 1rem;
+    }
+
+    .quote-card p {
+      font-size: 0.66rem;
+    }
+
+    .photo-body {
+      right: 0;
+      bottom: 10rem;
+      width: 74%;
+    }
+
+    .photo-detail {
+      right: -2%;
+      bottom: 1.5rem;
+      width: 61%;
+      transform: none;
+    }
+
+    .book-cover {
+      bottom: 0.2rem;
+      left: 0;
+      width: 39%;
+    }
+
+    figcaption {
+      font-size: 0.47rem;
+      letter-spacing: 0.09em;
+    }
+
+    .color-block-pink {
+      top: 6rem;
+      left: -0.75rem;
+      height: 18rem;
+    }
+
+    .color-block-violet {
+      right: -0.2rem;
+      bottom: 4rem;
+      width: 66%;
+      height: 2rem;
+    }
+
+    .section-folio {
+      grid-template-columns: 2rem 1fr 2.5rem;
+      font-size: 0.45rem;
     }
   }
 </style>
