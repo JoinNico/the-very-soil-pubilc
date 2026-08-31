@@ -1,6 +1,5 @@
 ---
 import { book } from '../data/site';
-import { publicPath } from '../utils/publicPath';
 import Motifs from './Motifs.astro';
 
 const imagePath = (filename: string) => `${import.meta.env.BASE_URL}images/${filename}`;
@@ -28,7 +27,7 @@ const specifications = [
 
     <div class='edition-layout'>
       <header class='edition-intro'>
-        <p class='section-index' aria-label='第 03 章'>
+        <p class='section-index' aria-label='第 03 节'>
           <span>03</span>
           <i aria-hidden='true'>/</i>
         </p>
@@ -40,7 +39,7 @@ const specifications = [
         <p class='chinese-title'>中文版实体书</p>
 
         <p class='edition-note'>
-          采用 ISO B6（125 × 176 mm）开本，共 144 页。<br />正文按照长篇批评文本重新编排，并以粉色与紫色区分章节、页码及导航信息。
+          为长篇批评文本设计的中文译本，以 125 × 176 mm 的 B6 开本收纳 144 页内容。纸张、装帧与粉紫双色的导航系统，共同服务于安静而连续的阅读。
         </p>
 
         <dl class='book-specs' aria-label='实体书规格'>
@@ -55,72 +54,53 @@ const specifications = [
         </dl>
       </header>
 
-      <div class='edition-collage' aria-label='实体书封面与内页设计展示'>
+      <div class='edition-collage' aria-label='实体书封面、内页与书脊实拍展示'>
         <div class='color-block color-block-pink' aria-hidden='true'></div>
         <div class='color-block color-block-violet' aria-hidden='true'></div>
 
-        <figure class='photo photo-opening'>
+        <figure class='photo photo-spread'>
           <img
-            src={imagePath('chapter-opening-spread.png')}
-            width='1600'
-            height='1000'
+            src={imagePath('the-very-soil-interior-spread.jpg')}
+            width='3584'
+            height='2688'
             loading='lazy'
             decoding='async'
-            alt='《绝望即壤》章节起始页实体书跨页'
+            alt='《绝望即壤》中文实体书第三章内页跨页实拍'
           />
-          <figcaption><span>01</span> CHAPTER OPENING / 章节起始页</figcaption>
         </figure>
 
-        <aside class='quote-card' aria-label='装帧说明'>
+        <aside class='quote-card' aria-label='装帧寄语'>
           <span aria-hidden='true'></span>
-          <p>让文字在纸页上<br />获得呼吸与秩序。</p>
-          <small lang='en'>TEXT BECOMES OBJECT</small>
+          <p>让文字离开屏幕，<br />在纸页间重新获得<br />呼吸与秩序。</p>
         </aside>
 
-        <figure class='photo photo-body'>
+        <figure class='photo photo-cover'>
           <img
-            src={imagePath('body-text-spread.png')}
-            width='1600'
-            height='1000'
+            src={imagePath('the-very-soil-front-cover.jpg')}
+            width='1932'
+            height='2580'
             loading='lazy'
             decoding='async'
-            alt='《绝望即壤》普通正文双页'
+            alt='《绝望即壤》中文实体书正面封面实拍'
           />
-          <figcaption><span>02</span> BODY TEXT / 正文</figcaption>
         </figure>
 
-        <figure class='book-cover'>
-          <div class='book-object'>
-            <span class='page-edges' aria-hidden='true'></span>
-            <img
-              src={imagePath('cover.jpg')}
-              width='1483'
-              height='2111'
-              loading='lazy'
-              decoding='async'
-              alt='《绝望即壤》中文版封面'
-            />
-          </div>
-          <figcaption><span>03</span> B6 EDITION / 中文版</figcaption>
-        </figure>
-
-        <figure class='photo photo-detail'>
+        <figure class='photo photo-spine'>
           <img
-            src={imagePath('detail-crop.png')}
-            width='1200'
-            height='800'
+            src={imagePath('the-very-soil-spine-detail.jpg')}
+            width='1812'
+            height='1020'
             loading='lazy'
             decoding='async'
-            alt='中文版页码、页眉与魔女文字排版细节'
+            alt='《绝望即壤》中文实体书书脊与封面材质特写'
           />
-          <figcaption><span>04</span> TYPOGRAPHIC DETAILS / 排版细节</figcaption>
         </figure>
       </div>
     </div>
 
     <footer class='section-folio' aria-hidden='true'>
       <span>03</span>
-      <p>DESIGNED FOR A LONG-FORM CRITICAL TEXT</p>
+      <p>DESIGNED FOR SLOW, LONG-FORM READING</p>
       <span>144 P.</span>
     </footer>
   </div>
@@ -297,7 +277,7 @@ const specifications = [
   .edition-collage {
     position: relative;
     min-width: 0;
-    min-height: clamp(44rem, 59vw, 56rem);
+    min-height: clamp(47rem, 61vw, 59rem);
   }
 
   .color-block {
@@ -309,15 +289,15 @@ const specifications = [
   .color-block-pink {
     top: 8rem;
     left: -3.5rem;
-    width: 26%;
-    height: 26rem;
+    width: 27%;
+    height: 27rem;
     background: color-mix(in srgb, var(--physical-pink) 62%, white);
   }
 
   .color-block-violet {
     right: -1.2rem;
     bottom: 7rem;
-    width: 58%;
+    width: 61%;
     height: 3rem;
     background: color-mix(in srgb, var(--physical-violet) 76%, white);
   }
@@ -333,25 +313,25 @@ const specifications = [
   .photo img {
     display: block;
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: cover;
     border: 1px solid rgb(24 21 28 / 0.12);
     background: #e5e0dc;
-    box-shadow: 0 1.5rem 3.5rem rgb(24 21 28 / 0.16);
+    box-shadow: 0 1.5rem 3.5rem rgb(24 21 28 / 0.18);
   }
 
-  .photo-opening {
+  .photo-spread {
     z-index: 1;
     top: 0;
     right: 6%;
-    width: 81%;
+    width: 86%;
   }
 
-  .photo-opening img {
-    aspect-ratio: 8 / 5;
+  .photo-spread img {
+    aspect-ratio: 4 / 3;
   }
 
-  .photo-opening::before {
+  .photo-spread::before {
     content: '';
     position: absolute;
     z-index: -1;
@@ -359,43 +339,28 @@ const specifications = [
     background: #e4ded9;
   }
 
-  .photo-body {
-    z-index: 2;
-    right: 3%;
-    bottom: 0;
-    width: 61%;
-  }
-
-  .photo-body img {
-    aspect-ratio: 8 / 5;
-  }
-
-  .photo-detail {
+  .photo-cover {
     z-index: 3;
+    bottom: 1.25rem;
+    left: 0;
+    width: 34%;
+    transform: rotate(-0.8deg);
+    transform-origin: center bottom;
+  }
+
+  .photo-cover img {
+    aspect-ratio: 1932 / 2580;
+  }
+
+  .photo-spine {
+    z-index: 4;
     right: -2%;
-    bottom: 2.5rem;
-    width: 45%;
-    transform: translateY(25%);
+    bottom: 0;
+    width: 58%;
   }
 
-  .photo-detail img {
-    aspect-ratio: 3 / 2;
-  }
-
-  figcaption {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    margin-top: 0.65rem;
-    color: rgb(24 21 28 / 0.62);
-    font-family: var(--font-sans);
-    font-size: 0.56rem;
-    font-weight: 700;
-    letter-spacing: 0.13em;
-  }
-
-  figcaption span {
-    color: var(--physical-pink);
+  .photo-spine img {
+    aspect-ratio: 151 / 85;
   }
 
   .quote-card {
@@ -403,7 +368,7 @@ const specifications = [
     z-index: 2;
     top: 3.5rem;
     right: -1rem;
-    width: 10.25rem;
+    width: 10.5rem;
     padding: 1.5rem 1.35rem;
     color: var(--physical-pink);
     background: rgb(247 244 241 / 0.94);
@@ -423,76 +388,6 @@ const specifications = [
     font-size: 0.78rem;
     letter-spacing: 0.05em;
     line-height: 1.8;
-  }
-
-  .quote-card small {
-    display: block;
-    margin-top: 1rem;
-    color: var(--physical-violet);
-    font-family: var(--font-sans);
-    font-size: 0.48rem;
-    font-weight: 700;
-    letter-spacing: 0.13em;
-  }
-
-  .book-cover {
-    position: absolute;
-    z-index: 4;
-    bottom: 1rem;
-    left: 0;
-    width: 31%;
-  }
-
-  .book-object {
-    position: relative;
-    margin-left: 0.8rem;
-    filter: drop-shadow(0 1.5rem 1.75rem rgb(24 21 28 / 0.25));
-    transform: perspective(62rem) rotateY(7deg) rotateZ(-1.5deg);
-    transform-origin: left center;
-  }
-
-  .book-object::before {
-    content: '';
-    position: absolute;
-    z-index: -2;
-    inset: 0.45rem 0.45rem -0.55rem -0.6rem;
-    border-radius: 2px;
-    background: #11182b;
-  }
-
-  .book-object::after {
-    content: '';
-    position: absolute;
-    z-index: 2;
-    inset: 0 auto 0 0;
-    width: 10%;
-    background: linear-gradient(90deg, rgb(0 0 0 / 0.45), transparent);
-    mix-blend-mode: multiply;
-    pointer-events: none;
-  }
-
-  .book-object img {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1483 / 2111;
-    object-fit: cover;
-  }
-
-  .page-edges {
-    position: absolute;
-    z-index: -1;
-    top: 0.45rem;
-    right: -0.55rem;
-    bottom: -0.3rem;
-    width: 0.8rem;
-    border-radius: 0 2px 2px 0;
-    background: repeating-linear-gradient(180deg, #f7f3e9 0 2px, #cac3b7 2px 3px);
-  }
-
-  .book-cover figcaption {
-    margin-left: 0.8rem;
   }
 
   .section-folio {
@@ -579,7 +474,7 @@ const specifications = [
     }
 
     .edition-collage {
-      min-height: 44rem;
+      min-height: 45rem;
     }
 
     .edge-note,
@@ -707,22 +602,18 @@ const specifications = [
     }
 
     .edition-collage {
-      min-height: 46rem;
+      min-height: 38rem;
     }
 
-    .photo-opening {
+    .photo-spread {
       right: 0;
       width: 96%;
     }
 
-    .photo-opening img {
-      aspect-ratio: 1.42 / 1;
-    }
-
     .quote-card {
-      top: 2rem;
+      top: 1.5rem;
       right: 0;
-      width: 7.3rem;
+      width: 7.7rem;
       padding: 1rem;
     }
 
@@ -730,28 +621,16 @@ const specifications = [
       font-size: 0.66rem;
     }
 
-    .photo-body {
-      right: 0;
-      bottom: 10rem;
-      width: 74%;
-    }
-
-    .photo-detail {
-      right: -2%;
-      bottom: 1.5rem;
-      width: 61%;
-      transform: none;
-    }
-
-    .book-cover {
-      bottom: 0.2rem;
+    .photo-cover {
+      bottom: 3.5rem;
       left: 0;
-      width: 39%;
+      width: 42%;
     }
 
-    figcaption {
-      font-size: 0.47rem;
-      letter-spacing: 0.09em;
+    .photo-spine {
+      right: -2%;
+      bottom: 0;
+      width: 66%;
     }
 
     .color-block-pink {
