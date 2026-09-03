@@ -20,9 +20,9 @@ import { book } from '../data/site';
     </nav>
 
     <div class='copyright'>
-      <p>译文与排版 © {book.editionYear} {book.translator}。保留所有权利；未经许可，不得复制、转载、改编或用于商业用途。</p>
-      <p>字体与外部素材遵循各自许可文件。原著及相关作品的权利归各自权利人所有。</p>
+      <p>译文与排版 © {book.editionYear} {book.translator}，保留所有权利。未经许可，不得复制、转载、改编或用于商业用途。</p>
       <p>本书为非官方翻译评论作品，与原作者、出版方及相关权利方无隶属或授权关系。</p>
+      <p>原著及相关作品的权利归各自权利人所有。</p>
     </div>
 
     <div class='footer-base'>
@@ -126,7 +126,8 @@ import { book } from '../data/site';
 
   .copyright {
     max-width: 56rem;
-    margin-top: 2.25rem;
+    margin: 2.25rem auto 0;
+    text-align: center;
   }
 
   .copyright p {

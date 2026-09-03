@@ -1,9 +1,10 @@
 ---
-import { book, links } from '../data/site';
+import { book, links, release } from '../data/site';
 import { publicPath } from '../utils/publicPath';
 import Motifs from './Motifs.astro';
 
 const hasSample = Boolean(links.samplePdf);
+const hasInterestForm = Boolean(release.interestFormUrl);
 const coverSrc = publicPath('images/cover.jpg');
 ---
 
@@ -42,7 +43,15 @@ const coverSrc = publicPath('images/cover.jpg');
             <span class='button button-primary button-disabled' aria-disabled='true'>试读制作中</span>
           )
         }
-        <a class='button button-secondary' href='#physical-edition'>实体版信息</a>
+        {
+          hasInterestForm ? (
+            <a class='button button-secondary' href={release.interestFormUrl} target='_blank' rel='noreferrer'>
+              填写购买意向
+            </a>
+          ) : (
+            <span class='button button-secondary button-disabled' aria-disabled='true'>购买意向登记待开放</span>
+          )
+        }
       </div>
 
       <dl class='edition-meta' aria-label='版本信息'>
