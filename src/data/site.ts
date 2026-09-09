@@ -112,7 +112,7 @@ export const release: ReleaseInfo = {
     officialUrl:
       'https://www.comicquest.cn/activity/6a625828e6f8ea2754db146d',
   },
-  booth: '待公布',
+  booth: 'N76',
   price: '待公布',
   interestFormUrl: 'https://wj.qq.com/s2/27686157/wolx/',
   onlineSaleUrl: '',
